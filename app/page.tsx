@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import coverPicture from "../public/main_cover.png";
+import coverPicture from "../public/main_cover_long.png";
 
 function page() {
   return (
