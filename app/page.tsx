@@ -1,7 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import coverPicture from "../public/main_cover_long.png";
 import Hero from "../components/Hero";
 
 function page() {
