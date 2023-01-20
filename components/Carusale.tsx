@@ -83,9 +83,8 @@ const Carousel: React.FC = () => {
             {logosArr &&
               logosArr.map((logo) => {
                 return (
-                  <div className="w-[80px] h-auto mx-10">
+                  <div key={logo.name} className="w-[80px] h-auto mx-10">
                     <Image
-                      key={logo.name}
                       width="100"
                       height="50"
                       src={logo?.src}
@@ -99,7 +98,7 @@ const Carousel: React.FC = () => {
             {logosArr &&
               logosArr.map((logo) => {
                 return (
-                  <div className="w-[80px] h-auto mx-10">
+                  <div key={logo.name} className="w-[80px] h-auto mx-10">
                     <Image
                       key={logo.name}
                       width="100"
