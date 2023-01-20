@@ -5,7 +5,11 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: [
+      "avatars.githubusercontent.com",
+      "cdn.discordapp.com",
+      "www.freepnglogos.com",
+    ],
   },
 };
 

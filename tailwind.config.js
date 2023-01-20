@@ -4,18 +4,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "#262322",
-        main: "#d4aa7d",
-        secondary: "#efd09e",
-        accent: "#f2e5d7",
-        text: "#272727",
+        "black-1": "#291F1E",
+        "black-2": "#181312",
+        main: "#F71735",
+        "main-dark": "#BB0D24",
+        secondary: "#477998",
+        accent: "#FEB95F",
+        text: "#f1edeb",
       },
       backgroundImage: {
         mainBG: "url('/public/wave-haikei.png')",
       },
-      boxShadow: {
-        middle:
-          "0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset",
+      animation: {
+        "left-to-right": "move 10s linear infinite",
+      },
+      keyframes: {
+        move: {
+          "0%": { transform: "translate(-1000%,0)" },
+          "100%": { transform: "translate(100%,0)" },
+        },
       },
     },
   },

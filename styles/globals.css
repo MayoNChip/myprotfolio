@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[url("/wave-haikei.svg")] w-full bg-clip-content bg-no-repeat bg-cover;
+  /* @apply bg-[url("/wave-haikei.svg")] w-full bg-clip-content bg-no-repeat bg-cover; */
+  @apply bg-black-1;
 }
