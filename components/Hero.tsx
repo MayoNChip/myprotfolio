@@ -29,7 +29,7 @@ function Hero(props: Props) {
           Ido Cohen.
         </span>
         <span className="text-3xl font-semibold md:text-6xl text-accent">
-          I'm a fullstack developer.
+          I`m a fullstack developer.
         </span>
       </div>
     </div>
