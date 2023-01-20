@@ -6,6 +6,10 @@ import reactLogo from "../public/reactlogo.png";
 import jsLogo from "../public/jslogo.png";
 import cssLogo from "../public/csslogo.png";
 import nextLogo from "../public/next.svg";
+import nodeJsLogo from "../public/nodejslogo.png";
+import tailwindLogo from "../public/tailwindlogo.png";
+import tsLogo from "../public/Typescript_logo_2020.svg";
+import expressLogo from "../public/Expressjs.png";
 
 // TODO:
 // 1. make carisale endlessly spin
@@ -25,20 +29,36 @@ interface Logos {
 
 const logos = [
   {
-    name: "Next Logo",
+    name: "Next",
     src: nextLogo,
   },
   {
-    name: "React Logo",
+    name: "React",
     src: reactLogo,
   },
   {
-    name: "CSS Logo",
+    name: "CSS",
     src: cssLogo,
   },
   {
-    name: "Js Logo",
+    name: "Js",
     src: jsLogo,
+  },
+  {
+    name: "Node",
+    src: nodeJsLogo,
+  },
+  {
+    name: "tailwind",
+    src: tailwindLogo,
+  },
+  {
+    name: "TS",
+    src: tsLogo,
+  },
+  {
+    name: "express",
+    src: expressLogo,
   },
 ];
 
@@ -56,28 +76,44 @@ const Carousel: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-11/12 h-auto gap-10 py-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
-      {logosArr &&
-        logosArr.map((logo) => {
-          // if (logos[logos.length - 1]) {
-          //   const newArr = logosArr.map((logo, idx, list) => list[list.length-1-i] - 1);
-          //   // const first = logosArr.shift();
-
-          //   setLogosArr(newArr);
-
-          //   return <h1>LAST</h1>;
-          // } else {
-          return (
-            <div
-              key={logo.name}
-              className="h-auto transition-all animate-left-to-right"
-            >
-              <Image width={60} height={50} src={logo?.src} alt={logo.name} />
-            </div>
-          );
-          // }
-        })}
-    </div>
+    <>
+      <div className="relative flex items-center justify-center w-11/12 h-auto py-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
+        <div className="flex w-full justify-evenly">
+          <div className="flex items-center w-full animate-marquee whitespace-nowrap">
+            {logosArr &&
+              logosArr.map((logo) => {
+                return (
+                  <div className="w-[80px] h-auto mx-10">
+                    <Image
+                      key={logo.name}
+                      width="100"
+                      height="50"
+                      src={logo?.src}
+                      alt={logo.name}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+          <div className="absolute flex items-center w-full animate-marquee2 whitespace-nowrap">
+            {logosArr &&
+              logosArr.map((logo) => {
+                return (
+                  <div className="w-[80px] h-auto mx-10">
+                    <Image
+                      key={logo.name}
+                      width="100"
+                      height="50"
+                      src={logo?.src}
+                      alt={logo.name}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
