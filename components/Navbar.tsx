@@ -12,16 +12,19 @@ function Navbar() {
       </div>
 
       <Link
-        className="text-text text-semibold hover:text-accent active:text-secondary"
+        className="text-text text-semibold hidden md:inline-block hover:text-accent active:text-secondary"
         href="/about"
       >
         About Me
       </Link>
-      <Link className="text-text text-semibold" href="/projects">
+      <Link
+        className="text-text text-semibold hidden md:inline-block"
+        href="/projects"
+      >
         Projects
       </Link>
       <Link
-        className="absolute right-0 px-4 py-2 my-auto rounded-l-lg text-semibold hover:bg-main bg-main-dark hover:text-white text-accent"
+        className="absolute right-0 px-4 py-2 my-auto rounded-l-lg hidden md:inline-block text-semibold hover:bg-main bg-main-dark hover:text-white text-accent"
         href="/contact"
       >
         Contact
