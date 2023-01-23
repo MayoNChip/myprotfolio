@@ -49,16 +49,16 @@ const logos = [
     src: nodeJsLogo,
   },
   {
+    name: "express",
+    src: expressLogo,
+  },
+  {
     name: "tailwind",
     src: tailwindLogo,
   },
   {
     name: "TS",
     src: tsLogo,
-  },
-  {
-    name: "express",
-    src: expressLogo,
   },
 ];
 
@@ -79,11 +79,14 @@ const Carousel: React.FC = () => {
     <>
       <div className="relative flex items-center justify-center w-11/12 h-auto py-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
         <div className="flex w-full justify-evenly">
-          <div className="flex items-center w-full animate-marquee whitespace-nowrap">
+          <div
+            onMouseDown={() => setPaused(true)}
+            className="flex items-center w-full justify-evenly animate-marquee whitespace-nowrap"
+          >
             {logosArr &&
               logosArr.map((logo) => {
                 return (
-                  <div key={logo.name} className="w-[80px] h-auto mx-10">
+                  <div key={logo.name} className="w-[80px] h-auto">
                     <Image
                       width="100"
                       height="50"
@@ -94,11 +97,11 @@ const Carousel: React.FC = () => {
                 );
               })}
           </div>
-          <div className="absolute flex items-center w-full animate-marquee2 whitespace-nowrap">
+          <div className="absolute flex items-center w-full justify-evenly animate-marquee2 whitespace-nowrap">
             {logosArr &&
               logosArr.map((logo) => {
                 return (
-                  <div key={logo.name} className="w-[80px] h-auto mx-10">
+                  <div key={logo.name} className="w-[80px] h-auto">
                     <Image
                       key={logo.name}
                       width="100"
