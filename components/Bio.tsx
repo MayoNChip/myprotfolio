@@ -11,7 +11,7 @@ function Bio() {
   return (
     <div className="flex flex-col items-center justify-evenly md:w-full">
       <div className="relative flex items-center justify-start p-12 overflow-hidden shadow-inner md:h-full md:w-full bg-text/70">
-        <div className="z-10 mx-2 md:p-6 md:w-7/12 md:h-full text-dark-2 md:ml-24">
+        <div className="z-10 mx-2 md:p-6 md:w-7/12 md:h-full text-black-2 md:ml-24">
           <h1 className="text-xl font-semibold md:p-4 md:text-2xl">
             Aspiring web developer with a strong passion for creating intuitive
             and user-friendly websites. I have gained a solid foundation in

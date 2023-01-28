@@ -9,9 +9,14 @@ function Navbar() {
   return (
     <div className="relative flex items-center w-full px-4 py-4 mx-auto my-auto h-5/6 shadow-middle justify-evenly bg-black-2">
       <div className="absolute flex items-center h-6 left-6">
-        <div className="w-10">
-          <Image src={logo} alt="logo"></Image>
-        </div>
+        <Link
+          className="text-text text-semibold hover:text-accent active:text-secondary"
+          href="/"
+        >
+          <div className="w-10">
+            <Image src={logo} alt="logo"></Image>
+          </div>
+        </Link>
       </div>
 
       <Link

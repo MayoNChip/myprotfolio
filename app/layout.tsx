@@ -11,7 +11,7 @@ function layout({ children }: Props) {
     <html lang="en">
       <head />
       <body>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col w-full">
           <Navbar />
           {children}
         </div>
