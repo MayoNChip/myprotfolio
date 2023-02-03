@@ -63,26 +63,13 @@ const logos = [
 ];
 
 const Carousel: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [logosArr, setLogosArr] = useState([...logos]);
-
-  const handleMouseEnter = () => {
-    setPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setPaused(false);
-  };
 
   return (
     <>
-      <div className="relative flex items-center justify-center w-11/12 h-auto py-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
-        <div className="flex w-full justify-evenly">
-          <div
-            onMouseDown={() => setPaused(true)}
-            className="flex items-center w-full justify-evenly animate-marquee whitespace-nowrap"
-          >
+      <div className="relative flex items-center justify-center w-11/12 h-auto py-4 my-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
+        <div className="flex w-full justify-evenly pause-animations">
+          <div className="flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
             {logosArr &&
               logosArr.map((logo) => {
                 return (
