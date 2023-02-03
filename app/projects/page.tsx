@@ -12,7 +12,7 @@ function page() {
     <div className="flex flex-col self-center w-11/12 my-10">
       {projects.map((project) => {
         return (
-          <div className="flex self-center w-2/3 h-full my-6 transition-colors duration-500 bg-orange-100 rounded-md shadow-md hover:bg-white">
+          <div className="flex self-center w-2/3 h-full my-6 transition-transform duration-500 bg-orange-100 rounded-md shadow-md hover:scale-105">
             <div className="flex items-center justify-between w-full px-4 py-4 h-11/12">
               <div className="flex flex-col w-full h-full">
                 <h1 className="text-2xl font-black text-black-2">

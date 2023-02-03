@@ -10,7 +10,7 @@ module.exports = {
         "main-dark": "#BB0D24",
         secondary: "#477998",
         accent: "#FEB95F",
-        text: "#f1edeb",
+        light: "#f1edeb",
       },
       backgroundImage: {
         mainBG: "url('/public/wave-haikei.png')",
@@ -18,6 +18,7 @@ module.exports = {
       animation: {
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
+        'animation-pause': "animation-play-state: paused" 
       },
       keyframes: {
         marquee: {

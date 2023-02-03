@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
+import ThemeProvider, { ThemeContext } from "../context/GlobalContext";
 import "../styles/globals.css";
 
 interface Props {
@@ -11,10 +13,12 @@ function layout({ children }: Props) {
     <html lang="en">
       <head />
       <body>
-        <div className="flex flex-col w-full">
-          <Navbar />
-          {children}
-        </div>
+        <ThemeProvider>
+          <div className="flex flex-col w-full">
+            <Navbar />
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

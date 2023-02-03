@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* @apply bg-[url("/wave-haikei.svg")] w-full bg-clip-content bg-no-repeat bg-cover; */
+/*body {
+  
   @apply bg-black-1;
+} */
+
+.pause-animations:hover * {
+  animation-play-state: paused;
 }
