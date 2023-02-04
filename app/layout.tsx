@@ -1,7 +1,10 @@
 "use client";
 import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
-import ThemeProvider, { ThemeContext } from "../context/GlobalContext";
+import ThemeProvider, {
+  GlobalContext,
+  InitialContext,
+} from "../context/GlobalContext";
 import "../styles/globals.css";
 
 interface Props {

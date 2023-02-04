@@ -2,25 +2,23 @@
 
 import React, { createContext, ReactNode, useState } from "react";
 
-export type ThemeContextType = "light" | "dark";
-
 type Props = {
   children: ReactNode;
 };
 
 export type InitialContext = {
-  theme: ThemeContextType;
-  setTheme: React.Dispatch<React.SetStateAction<ThemeContextType>>;
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const ThemeContext = createContext<InitialContext | null>(null);
+export const GlobalContext = createContext<InitialContext | null>(null);
 
 const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState<ThemeContextType>("dark");
+  const [darkMode, setDarkMode] = useState<boolean>(true);
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <GlobalContext.Provider value={{ darkMode, setDarkMode }}>
       {children}
-    </ThemeContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 

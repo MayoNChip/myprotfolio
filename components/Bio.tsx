@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useContext } from "react";
-import { ThemeContext } from "../context/GlobalContext";
+import { GlobalContext, InitialContext } from "../context/GlobalContext";
 import bioImage from "../public/pclogo.png";
 
 //TODO:
@@ -9,12 +9,12 @@ import bioImage from "../public/pclogo.png";
 // 3. responsiveness
 
 function Bio() {
-  const themeContext = useContext(ThemeContext);
+  const { darkMode } = useContext(GlobalContext) as InitialContext;
   return (
     <div className="flex flex-col items-center my-4 justify-evenly md:w-full">
       <div
         className={`relative flex items-center justify-start p-12 overflow-hidden shadow-inner md:h-full md:w-full ${
-          themeContext?.theme === "light" ? "bg-secondary/40" : "bg-light/70"
+          !darkMode ? "bg-secondary/40" : "bg-light/70"
         }`}
       >
         <div className="z-10 mx-2 md:p-6 md:w-7/12 md:h-full text-black-2 md:ml-24">

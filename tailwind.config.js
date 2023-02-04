@@ -4,12 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "black-1": "#291F1E",
-        "black-2": "#181312",
+        "black-1": "#2C2C34",
+        "black-2": "#3A3940",
         main: "#F71735",
         "main-dark": "#BB0D24",
         secondary: "#477998",
         accent: "#FEB95F",
+        "semi-light": "#d3cac6",
         light: "#f1edeb",
       },
       backgroundImage: {
@@ -18,7 +19,7 @@ module.exports = {
       animation: {
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
-        'animation-pause': "animation-play-state: paused" 
+        "animation-pause": "animation-play-state: paused",
       },
       keyframes: {
         marquee: {

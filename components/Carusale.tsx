@@ -2,7 +2,7 @@
 
 import Image, { StaticImageData } from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-import { InitialContext, ThemeContext } from "../context/GlobalContext";
+import { InitialContext, GlobalContext } from "../context/GlobalContext";
 import { logos } from "../lib/logos";
 
 // TODO:
@@ -23,13 +23,13 @@ interface Logos {
 
 const Carousel: React.FC = () => {
   const [logosArr, setLogosArr] = useState([...logos]);
-  const { theme } = useContext(ThemeContext) as InitialContext;
+  const { darkMode } = useContext(GlobalContext) as InitialContext;
 
   return (
     <>
       <div
         className={`relative flex items-center justify-center  h-auto py-4 my-4 overflow-hidden  ${
-          theme === "light" ? "rounded-none w-full" : "rounded-full w-11/12"
+          !darkMode ? "rounded-none w-full" : "rounded-full w-11/12"
         } shadow-2xl shadow-dark-2 bg-light`}
       >
         <div className="flex w-full justify-evenly pause-animations">

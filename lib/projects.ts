@@ -31,3 +31,5 @@ export const projects = [
     image: guruImage,
   },
 ];
+
+export type project = typeof projects[0];

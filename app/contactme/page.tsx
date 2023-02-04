@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { z, ZodError } from "zod";
+import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 
 const FormValidation = z.object({
   email: z.string().email().min(1),
@@ -16,6 +17,7 @@ function page() {
     message: "",
   });
   const [emailError, setEmailError] = useState<string>();
+  const { darkMode } = useContext(GlobalContext) as InitialContext;
 
   console.log(emailError);
 
@@ -46,7 +48,7 @@ function page() {
   };
 
   return (
-    <>
+    <div className={`${darkMode ? "bg-black-1" : "bg-light"}`}>
       <div className="flex flex-col w-full my-10 bg-text">
         <div className="flex flex-col self-center">
           <h1 className="my-4 text-4xl text-black-2">Get in touch with me!</h1>
@@ -82,7 +84,7 @@ function page() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
