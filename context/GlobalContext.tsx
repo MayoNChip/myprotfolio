@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 };
 
-type InitialContext = {
+export type InitialContext = {
   theme: ThemeContextType;
   setTheme: React.Dispatch<React.SetStateAction<ThemeContextType>>;
 };

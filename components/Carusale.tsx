@@ -1,20 +1,14 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import React, { useState, useEffect } from "react";
-import reactLogo from "../public/reactlogo.png";
-import jsLogo from "../public/jslogo.png";
-import cssLogo from "../public/csslogo.png";
-import nextLogo from "../public/next.svg";
-import nodeJsLogo from "../public/nodejslogo.png";
-import tailwindLogo from "../public/tailwindlogo.png";
-import tsLogo from "../public/Typescript_logo_2020.svg";
-import expressLogo from "../public/Expressjs.png";
+import React, { useState, useEffect, useContext } from "react";
+import { InitialContext, ThemeContext } from "../context/GlobalContext";
+import { logos } from "../lib/logos";
 
 // TODO:
-// 1. make carisale endlessly spin
+// 1. make carisale endlessly spin - Done
 // 2. add all other logos
-// 3. pasue scroll on hover
+// 3. pasue scroll on hover - Done
 // 4. add tooltips on each logo?
 
 interface CarouselProps {
@@ -27,49 +21,19 @@ interface Logos {
   src: string;
 }
 
-const logos = [
-  {
-    name: "Next",
-    src: nextLogo,
-  },
-  {
-    name: "React",
-    src: reactLogo,
-  },
-  {
-    name: "CSS",
-    src: cssLogo,
-  },
-  {
-    name: "Js",
-    src: jsLogo,
-  },
-  {
-    name: "Node",
-    src: nodeJsLogo,
-  },
-  {
-    name: "express",
-    src: expressLogo,
-  },
-  {
-    name: "tailwind",
-    src: tailwindLogo,
-  },
-  {
-    name: "TS",
-    src: tsLogo,
-  },
-];
-
 const Carousel: React.FC = () => {
   const [logosArr, setLogosArr] = useState([...logos]);
+  const { theme } = useContext(ThemeContext) as InitialContext;
 
   return (
     <>
-      <div className="relative flex items-center justify-center w-11/12 h-auto py-4 my-4 overflow-hidden rounded-full shadow-2xl shadow-dark-2 bg-text">
+      <div
+        className={`relative flex items-center justify-center  h-auto py-4 my-4 overflow-hidden  ${
+          theme === "light" ? "rounded-none w-full" : "rounded-full w-11/12"
+        } shadow-2xl shadow-dark-2 bg-light`}
+      >
         <div className="flex w-full justify-evenly pause-animations">
-          <div className="flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
+          <div className="relative flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
             {logosArr &&
               logosArr.map((logo) => {
                 return (

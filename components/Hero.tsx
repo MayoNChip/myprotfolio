@@ -1,7 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import coverPicture from "../public/melogo.png";
 import coverBG from "../public/cover_picture_bg.jpg";
+import { ThemeContext } from "../context/GlobalContext";
+import { text } from "stream/consumers";
 
 // TODO:
 // - add responsivness
@@ -11,6 +13,7 @@ interface Props {}
 
 function Hero(props: Props) {
   const {} = props;
+  const themeContext = useContext(ThemeContext);
 
   return (
     <div className="relative flex justify-start w-full my-4 md:mt-10 overflow-hidden h-[300px] md:h-[600px] md:w-3/4">
@@ -22,13 +25,25 @@ function Hero(props: Props) {
         height="200"
       />
       <div className="flex flex-col h-full w-full md:pb-12 leading-[100px] justify-end z-10 mx-4">
-        <span className="text-3xl font-light md:text-6xl text-accent">
+        <span
+          className={`text-3xl font-light md:text-6xl ${
+            themeContext?.theme === "light" ? "text-black-1" : "text-accent"
+          }`}
+        >
           Hi, my name is
         </span>
-        <span className="md:text-[120px] font-bold text-6xl text-text">
+        <span
+          className={`md:text-[120px] font-bold text-6xl ${
+            themeContext?.theme === "light" ? "text-black-1" : "text-light"
+          }`}
+        >
           Ido Cohen.
         </span>
-        <span className="text-3xl font-semibold md:text-6xl text-accent">
+        <span
+          className={`text-3xl font-semibold md:text-6xl ${
+            themeContext?.theme === "light" ? "text-black-1" : "text-accent"
+          }`}
+        >
           I`m a fullstack developer.
         </span>
       </div>

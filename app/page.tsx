@@ -16,9 +16,9 @@ function page() {
       } flex flex-col items-center w-full`}
     >
       <Hero />
-      <Divider schema="dark" />
+      <Divider schema={themeContext?.theme === "dark" ? "dark" : "light"} />
       <Bio />
-      <Divider schema="light" />
+      <Divider schema={themeContext?.theme === "dark" ? "dark" : "light"} />
       <Carousel />
     </div>
   );
