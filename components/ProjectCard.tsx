@@ -15,6 +15,7 @@ function ProjectCard(project: project) {
             </h1>
             <Link
               href={project.url}
+              target={"_blank"}
               className="self-end font-medium text-md text-secondary hover:text-accent"
             >
               To Project

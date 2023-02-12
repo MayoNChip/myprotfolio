@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
+import NavbarSinglePage from "../components/NavbarSinglePage";
 import ThemeProvider, {
   GlobalContext,
   InitialContext,
@@ -18,7 +19,7 @@ function layout({ children }: Props) {
       <body>
         <ThemeProvider>
           <div className="flex flex-col w-full">
-            <Navbar />
+            <NavbarSinglePage />
             {children}
           </div>
         </ThemeProvider>

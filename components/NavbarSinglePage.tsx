@@ -10,7 +10,7 @@ import { MdLightMode } from "react-icons/md";
 // TODO:
 // 1. Responsivness
 
-function Navbar() {
+function NavbarSinglePage() {
   const { darkMode, setDarkMode } = useContext(GlobalContext) as InitialContext;
 
   const handleThemeChange = () => {
@@ -49,17 +49,18 @@ function Navbar() {
         <button className="text-white" onClick={handleThemeChange}>
           {!darkMode ? <MdDarkMode className="text-black" /> : <MdLightMode />}
         </button>
-        <Link
+        <button
           className={`hidden text-semibold md:inline-block ${
             !darkMode
               ? "text-black-1  hover:text-secondary active:text-main-dark"
               : "text-light  hover:text-semi-light active:text-main-dark"
           } `}
-          href="/aboutme"
         >
-          About Me
-        </Link>
-        {/* <button
+          <a href="#aboutme" onClick={handleClick}>
+            About Me
+          </a>
+        </button>
+        <button
           className={`hidden text-semibold md:inline-block ${
             !darkMode
               ? "text-black-1  hover:text-secondary active:text-main-dark"
@@ -69,17 +70,8 @@ function Navbar() {
           <a href="#projects" onClick={handleClick}>
             Projects
           </a>
-        </button> */}
-        <Link
-          className={`hidden text-semibold md:inline-block ${
-            !darkMode
-              ? "text-black-1  hover:text-secondary active:text-main-dark"
-              : "text-light  hover:text-semi-light active:text-main-dark"
-          } `}
-          href="/projects"
-        >
-          Projects
-        </Link>
+        </button>
+
         <Link
           className="hidden px-4 py-2 my-auto rounded-lg md:inline-block text-semibold hover:bg-main bg-main-dark hover:text-white text-accent"
           href="/contactme"
@@ -91,4 +83,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarSinglePage;

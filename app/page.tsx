@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useContext } from "react";
+import About from "../components/About";
 import Bio from "../components/Bio";
 import Carousel from "../components/Carusale";
 import Divider from "../components/Divider";
 import Hero from "../components/Hero";
+import Projects from "../components/Projects";
 import { GlobalContext, InitialContext } from "../context/GlobalContext";
 
 function page() {
@@ -20,6 +22,10 @@ function page() {
       <Bio />
       <Divider schema={darkMode ? "dark" : "light"} />
       <Carousel />
+      <Divider schema={darkMode ? "dark" : "light"} />
+      <About id={"aboutme"} />
+      <Divider schema={darkMode ? "dark" : "light"} />
+      <Projects id={"projects"} />
     </div>
   );
 }
