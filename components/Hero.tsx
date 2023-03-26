@@ -37,7 +37,7 @@ function Hero(props: Props) {
 						!darkMode ? "text-black-1" : "text-light"
 					}`}
 				>
-					Ido Cohen!!!
+					Ido Cohen.
 				</span>
 				<span
 					className={`text-3xl font-semibold md:text-6xl ${
