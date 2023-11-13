@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useContext } from "react";
-import aboutMeImage from "../../public/me.jpeg";
+import aboutMeImage from "../public/me.jpeg";
 import { GlobalContext, InitialContext } from "../context/GlobalContext";
 
 function AboutMe() {
@@ -53,7 +53,7 @@ function AboutMe() {
         <h1 className="my-5">
           I am now eager to bring my passion for development and love for all
           things tech to a new company, where I can continue growing as a
-          developer and making a positive impact. Whether I'm snapping the
+          developer and making a positive impact. Whether I`m snapping the
           perfect shot, creating a virtual world, or finding new ways to use
           technology for good, I am always on the lookout for the next adventure
           and eager to learn and grow along the way.
