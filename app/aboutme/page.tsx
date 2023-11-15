@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useContext } from "react";
+import React from "react";
 import AboutMe from "../../components/AboutMe";
 
 function page() {

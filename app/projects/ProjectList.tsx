@@ -43,7 +43,7 @@ function ProjectList() {
 				{projects
 					.filter((project) => project.isLive === displayingLiveProjects)
 					.map((project) => {
-						return <ProjectCard {...project}></ProjectCard>;
+						return <ProjectCard key={project.title} {...project}></ProjectCard>;
 					})}
 			</div>
 		</div>
