@@ -1,12 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-body {
-  
-  @apply bg-black-1;
-} */
 
 .pause-animations:hover * {
-  animation-play-state: paused;
+	animation-play-state: paused;
 }
