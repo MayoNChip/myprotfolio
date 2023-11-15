@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import AboutMe from "../../components/AboutMe";
 
 function page() {
-  return <AboutMe />;
+	return <AboutMe />;
 }
 
 export default page;
