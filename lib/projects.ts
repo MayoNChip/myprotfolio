@@ -27,7 +27,7 @@ export const projects: Project[] = [
 		title: "guru - Grocery shop",
 		description: "some description",
 		tags: ["React", "ChakraUI", "Frontend"],
-		repository_url: "http://www.google.com",
+		repository_url: "https://github.com/MayoNChip/group-project-frontend",
 		image: guruImage,
 		isLive: false,
 	},

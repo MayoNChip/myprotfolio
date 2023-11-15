@@ -8,7 +8,7 @@ import { cn } from "../../lib/utils";
 
 function ProjectList() {
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
-	const [displayingLiveProjects, setDisplayingLiveProjects] = useState(false);
+	const [displayingLiveProjects, setDisplayingLiveProjects] = useState(true);
 	return (
 		<div
 			className={`${
@@ -19,17 +19,6 @@ function ProjectList() {
 				<button
 					className={cn(
 						"px-6 py-2  rounded-l-xl",
-						displayingLiveProjects
-							? "bg-main-dark text-light"
-							: "bg-gray-500 text-gray-800"
-					)}
-					onClick={() => setDisplayingLiveProjects(true)}
-				>
-					Live
-				</button>
-				<button
-					className={cn(
-						"px-6 py-2  rounded-r-xl",
 						!displayingLiveProjects
 							? "bg-main-dark text-light"
 							: "bg-gray-500 text-gray-800"
@@ -37,6 +26,17 @@ function ProjectList() {
 					onClick={() => setDisplayingLiveProjects(false)}
 				>
 					Code
+				</button>
+				<button
+					className={cn(
+						"px-6 py-2  rounded-r-xl",
+						displayingLiveProjects
+							? "bg-main-dark text-light"
+							: "bg-gray-500 text-gray-800"
+					)}
+					onClick={() => setDisplayingLiveProjects(true)}
+				>
+					Live
 				</button>
 			</div>
 			<div className="grid w-10/12 h-screen grid-flow-row grid-cols-4 grid-rows-4 gap-2">
