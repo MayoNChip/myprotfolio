@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import ThemeProvider from "../context/GlobalContext";
 import "../styles/globals.css";
@@ -14,9 +15,11 @@ function layout({ children }: Props) {
 			<head />
 			<body>
 				<ThemeProvider>
-					<div className="flex flex-col w-full">
+					<div className="flex flex-col">
 						<Navbar />
+						{/* <Container> */}
 						{children}
+						{/* </Container> */}
 					</div>
 				</ThemeProvider>
 			</body>

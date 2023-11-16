@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import { GlobalContext, InitialContext } from "../context/GlobalContext";
+import { cn } from "../lib/utils";
 import Bio from "./Bio";
 import Carousel from "./Carusale";
 import Divider from "./Divider";
@@ -11,9 +12,10 @@ function Homepage() {
 
 	return (
 		<div
-			className={`${
-				darkMode ? "bg-black-1" : "bg-light"
-			} flex flex-col items-center w-full`}
+			className={cn(
+				darkMode ? "bg-black-1" : "bg-light",
+				"flex flex-col items-center"
+			)}
 		>
 			<Hero />
 			<Divider schema={darkMode ? "dark" : "light"} />

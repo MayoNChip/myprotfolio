@@ -1,29 +1,48 @@
 "use client";
 
-import React, { useContext, useState } from "react";
-import { z } from "zod";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { z, ZodError } from "zod";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
+import { cn } from "../../lib/utils";
+import { sendEmail } from "./nodeMailer";
+import { useFormState, useFormStatus } from "react-dom";
+import { redirect } from "next/navigation";
 
-const FormValidation = z.object({
-	email: z.string().email().min(1),
+export const FormValidation = z.object({
+	from: z.string().email(),
 	message: z.string().min(8, "Minimun 8 characters"),
 });
 
-type ContactMeForm = z.infer<typeof FormValidation>;
+type EmailMessage = {
+	from: string | undefined;
+	message: string | undefined;
+};
+
+const initialState = {
+	message: "",
+};
 
 function ContactMeForm() {
-	const [data, setData] = useState<ContactMeForm>({
-		email: "",
-		message: "",
+	const [state, formAction] = useFormState(sendEmail, initialState);
+	const [data, setData] = useState<EmailMessage>({
+		from: undefined,
+		message: undefined,
 	});
 	const [emailError, setEmailError] = useState<string>();
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
 
-	console.log(emailError);
+	useEffect(() => {
+		switch (state.message) {
+			case "message sent":
+				redirect("/thankyou");
+			case "message failed to send":
+				FormValidation.safeParse(data);
+		}
+	}, [state.message]);
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setData((data) => {
-			return { ...data, email: e.target.value };
+			return { ...data, from: e.target.value };
 		});
 	};
 
@@ -33,55 +52,73 @@ function ContactMeForm() {
 		});
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		try {
-			FormValidation.parse(data);
-			//continue to send email
-		} catch (error) {
-			if (error instanceof z.ZodError) {
-				if ((error.errors[0].path = ["email"])) {
-					setEmailError(error.errors[0].message);
-				}
-			}
-		}
-	};
-
 	return (
-		<div className={`${darkMode ? "bg-black-1" : "bg-light"}`}>
+		<div
+			className={cn(darkMode ? "bg-black-1" : "bg-light", "h-screen w-full")}
+		>
 			<div className="flex flex-col w-full my-10 bg-text">
 				<div className="flex flex-col self-center">
-					<h1 className="my-4 text-4xl text-black-2">Get in touch with me!</h1>
-					<form
-						onSubmit={handleSubmit}
-						className="flex flex-col items-start w-full"
+					<h1
+						className={cn(
+							darkMode ? "text-accent" : "text-secondary/70",
+							"my-4 text-4xl font-bold"
+						)}
 					>
-						<div className="w-1/6">
-							<h2 className=" text-black-2">Email</h2>
+						Get in touch with me!
+					</h1>
+					<form
+						action={formAction}
+						className="flex flex-col items-start w-full space-y-4"
+					>
+						<div className="w-full space-y-2">
+							<h2
+								className={cn(
+									darkMode ? "text-accent/70 " : " text-black-2",
+									"font-extralight"
+								)}
+							>
+								Email
+							</h2>
 							<input
-								defaultValue={data.email}
+								defaultValue={data.from}
 								placeholder=""
-								className="px-2 outline-none rounded-xl text-black-2"
+								className="w-full px-2 outline-none rounded-xl text-black-2"
+								name="from"
+								id="from"
+								type="email"
+								required
 								onChange={(e) => handleEmailChange(e)}
 							></input>
-							{emailError && <h1>{emailError}s</h1>}
+							{emailError && <h1>{emailError}</h1>}
 						</div>
-						<div className="w-1/6 ">
-							<h2 className=" text-black-2">Message</h2>
+						<div className="w-full space-y-2 ">
+							<h2
+								className={cn(
+									darkMode ? "text-accent/70 " : " text-black-2",
+									"font-extralight"
+								)}
+							>
+								Message
+							</h2>
 							<textarea
 								defaultValue={data.message}
 								onChange={(e) => handleMessageChange(e)}
 								placeholder=""
+								name="message"
+								id="message"
+								required
 								className="px-2 outline-none resize-none rounded-xl text-black-2 md:w-[400px] md:h-[250px]"
 							></textarea>
 						</div>
 						<button
+							disabled={!FormValidation.safeParse(data).success}
 							type="submit"
-							className="self-end px-4 py-2 mx-2 my-4 rounded-md bg-cyan-700 text-text hover:bg-cyan-600 hover:text-gray-100 active:bg-cyan-900 active:text-text"
+							className="self-end px-4 py-2 mx-2 my-4 rounded-md text-black/50 bg-secondary hover:bg-accent hover:text-black/50 active:bg-cyan-900 active:text-text disabled:bg-gray-500"
 						>
 							Submit
 						</button>
 					</form>
+					<h1>{state.message}</h1>
 				</div>
 			</div>
 		</div>
