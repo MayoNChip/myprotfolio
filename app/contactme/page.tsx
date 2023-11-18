@@ -1,13 +1,12 @@
-import { createTransport } from "nodemailer";
 import React from "react";
 import ContactMeForm from "./ContactMeForm";
 
 function page() {
-	return (
-		<>
-			<ContactMeForm />
-		</>
-	);
+  return (
+    <>
+      <ContactMeForm />
+    </>
+  );
 }
 
 export default page;
