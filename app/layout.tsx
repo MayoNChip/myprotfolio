@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import ThemeProvider from "../context/GlobalContext";
@@ -15,12 +15,10 @@ function layout({ children }: Props) {
 			<head />
 			<body>
 				<ThemeProvider>
-					<div className="flex flex-col min-h-fit">
+					<Container>
 						<Navbar />
-						{/* <Container> */}
 						{children}
-						{/* </Container> */}
-					</div>
+					</Container>
 				</ThemeProvider>
 			</body>
 		</html>

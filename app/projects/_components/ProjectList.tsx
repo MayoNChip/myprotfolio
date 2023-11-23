@@ -39,12 +39,10 @@ function ProjectList() {
           Live
         </button>
       </div> */}
-			<div className="grid w-10/12 h-screen grid-flow-row grid-cols-1 grid-rows-1 gap-4 md:grid-cols-4 md:grid-rows-4">
-				{projects
-					//   .filter((project) => project.isLive === displayingLiveProjects)
-					.map((project) => {
-						return <ProjectCard key={project.title} {...project}></ProjectCard>;
-					})}
+			<div className="grid w-10/12 h-screen grid-flow-row grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-4">
+				{projects.map((project) => {
+					return <ProjectCard key={project.id} {...project}></ProjectCard>;
+				})}
 			</div>
 		</div>
 	);

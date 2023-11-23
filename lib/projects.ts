@@ -3,44 +3,36 @@ import ChatAppImage from "../public/angularTodos.png";
 import DebateItImage from "../public/debateit.png";
 import { StaticImageData } from "next/image";
 
-type Project =
-	| {
-			title: string;
-			description: string;
-			tags: string[];
-			app_url: string;
-			repository_url: string;
-			image: StaticImageData;
-			isLive: true;
-	  }
-	| {
-			title: string;
-			description: string;
-			tags: string[];
-			repository_url: string;
-			image: StaticImageData;
-			isLive: false;
-	  };
+type Project = {
+	id: number;
+	title: string;
+	description: string;
+	tags: string[];
+	app_url?: string;
+	repository_url?: string;
+	image: StaticImageData;
+};
 
 export const projects: Project[] = [
 	{
+		id: 1,
 		title: "guru - Grocery shop",
 		description: "some description",
 		tags: ["React", "ChakraUI", "Frontend"],
 		repository_url: "https://github.com/MayoNChip/group-project-frontend",
 		image: guruImage,
-		isLive: false,
 	},
 	{
+		id: 2,
 		title: "do! - Todo's App",
 		description: "To-do app.",
 		tags: ["AngularJS", "TailwindCSS", "Frontend"],
 		repository_url: "https://github.com/MayoNChip/angular-todoapp",
 		app_url: "https://angular-todoapp-idoc.vercel.app/",
 		image: ChatAppImage,
-		isLive: true,
 	},
 	{
+		id: 3,
 		title: "Pet Project",
 		description: "Pet Adoption.",
 		tags: ["React", "Frontend", "Backend", "ChakraUI", "MongoDB", "Express"],
@@ -48,16 +40,15 @@ export const projects: Project[] = [
 		repository_url:
 			"https://github.com/MayoNChip/full-stack-pet-adoption-MayoNChip",
 		image: guruImage,
-		isLive: true,
 	},
 	{
+		id: 4,
 		title: "Debate It",
 		description: "some description",
 		tags: ["AngularJS", "TailwindCSS", "Full Stack"],
 		app_url: "http://www.google.com",
 		repository_url: "",
 		image: DebateItImage,
-		isLive: true,
 	},
 ];
 

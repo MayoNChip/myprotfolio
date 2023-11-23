@@ -7,12 +7,14 @@ import { cn } from "../lib/utils";
 function Container({ children }: { children: ReactNode }) {
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
 	return (
-		<>
-			<div
-				className={cn(darkMode ? "bg-dark-1" : "bg-light", "w-screen")}
-			></div>
-			<div className="flex w-10/12 m-auto">{children}</div>
-		</>
+		<div
+			className={cn(
+				darkMode ? "bg-black-1" : "bg-accent",
+				"flex flex-col w-full h-full m-auto transition-transform"
+			)}
+		>
+			{children}
+		</div>
 	);
 }
 

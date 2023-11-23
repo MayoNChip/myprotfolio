@@ -32,7 +32,6 @@ function ProjectCard(project: project) {
 
 					<div className="flex flex-col items-center  w-full min-h-[200px]">
 						<div className="min-h-[100px]">
-							{" "}
 							<h1
 								className={cn(
 									darkMode ? "text-black-2" : "text-black-1",
@@ -42,20 +41,29 @@ function ProjectCard(project: project) {
 								{project.description}
 							</h1>
 						</div>
-						<div className="flex justify-between w-full">
-							<Link
-								href={project.repository_url}
-								target="_blank"
-								className={cn(
-									"self-end px-6 py-2 font-medium transition-colors rounded text-md ",
-									darkMode
-										? "text-light hover:text-black/50 bg-secondary/60 hover:bg-secondary"
-										: "text-black/40 hover:text-secondary/90 bg-bg-secondary/30 hover:bg-secondary/60"
-								)}
-							>
-								Repository
-							</Link>
-							{project.isLive && (
+						<div
+							className={cn(
+								!project.app_url || !project.repository_url
+									? "justify-center"
+									: "justify-between",
+								"flex w-full"
+							)}
+						>
+							{project.repository_url && (
+								<Link
+									href={project.repository_url}
+									target="_blank"
+									className={cn(
+										"self-end px-6 py-2 font-medium transition-colors rounded text-md ",
+										darkMode
+											? "text-light hover:text-black/50 bg-secondary/60 hover:bg-secondary"
+											: "text-black/40 hover:text-secondary/90 bg-bg-secondary/30 hover:bg-secondary/60"
+									)}
+								>
+									Repository
+								</Link>
+							)}
+							{project.app_url && (
 								<Link
 									href={project.app_url}
 									target="_blank"
@@ -77,13 +85,11 @@ function ProjectCard(project: project) {
 									<div
 										key={tag}
 										className={cn(
-											darkMode ? " bg-semi-light" : "bg-main-dark/50",
+											darkMode ? " bg-secondary/30" : "bg-main-dark/50",
 											"flex items-center justify-center px-1 py-1 rounded cursor-default"
 										)}
 									>
-										<p className="text-accent whitespace-nowrap w-fit ">
-											{tag}
-										</p>
+										<p className=" text-light whitespace-nowrap w-fit">{tag}</p>
 									</div>
 								);
 							})}
