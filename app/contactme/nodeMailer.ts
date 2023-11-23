@@ -25,7 +25,7 @@ export async function sendEmail(prevState: any, formData: FormData) {
       message: formData.get("message"),
     });
     const emailOptions: SendMailOptions = {
-      from: data.from,
+      from: "idocodev@gmail.com",
       to: "idocodev@gmail.com",
       subject: "New Potential Empoloyer!",
       //   text: data.message,
@@ -36,7 +36,13 @@ export async function sendEmail(prevState: any, formData: FormData) {
 	  <div>${data.message}</div> </body>`,
     };
 
-    transporter.sendMail(emailOptions);
+    transporter.sendMail(emailOptions, (err, info) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("message send", info.response);
+      }
+    });
     return { message: "message sent" };
   } catch (error) {
     console.log(error);

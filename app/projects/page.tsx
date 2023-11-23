@@ -1,15 +1,11 @@
 import React from "react";
-import ProjectList from "./ProjectList";
+import ProjectList from "./_components/ProjectList";
 
 //TODO:
 // - Tags
 
 function page() {
-	return (
-		<>
-			<ProjectList />
-		</>
-	);
+  return <ProjectList />;
 }
 
 export default page;

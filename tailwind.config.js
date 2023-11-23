@@ -6,12 +6,13 @@ module.exports = {
       colors: {
         "black-1": "#2C2C34",
         "black-2": "#3A3940",
-        main: "#F71735",
-        "main-dark": "#BB0D24",
-        secondary: "#477998",
-        accent: "#FEB95F",
+        main: "#08A4BD",
+        // main: "#ACC196",
+        "main-dark": "#05798A",
+        secondary: "#799496",
+        accent: "#F4F3EE",
         "semi-light": "#d3cac6",
-        light: "#f1edeb",
+        light: "#F4F3EE",
       },
       backgroundImage: {
         mainBG: "url('/public/wave-haikei.png')",
