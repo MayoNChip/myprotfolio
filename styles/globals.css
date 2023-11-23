@@ -5,3 +5,7 @@
 .pause-animations:hover * {
 	animation-play-state: paused;
 }
+
+body {
+	@apply bg-black-1;
+}

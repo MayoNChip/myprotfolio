@@ -5,7 +5,7 @@ import ProjectList from "./_components/ProjectList";
 // - Tags
 
 function page() {
-  return <ProjectList />;
+	return <ProjectList />;
 }
 
 export default page;

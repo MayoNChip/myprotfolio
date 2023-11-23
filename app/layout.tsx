@@ -15,7 +15,7 @@ function layout({ children }: Props) {
 			<head />
 			<body>
 				<ThemeProvider>
-					<div className="flex flex-col">
+					<div className="flex flex-col min-h-fit">
 						<Navbar />
 						{/* <Container> */}
 						{children}
