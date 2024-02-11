@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { useState, useEffect, useContext } from "react";
 import { InitialContext, GlobalContext } from "../context/GlobalContext";
 import { logos } from "../lib/logos";
+import { cn } from "../lib/utils";
 
 // TODO:
 // 1. make carisale endlessly spin - Done
@@ -12,62 +13,63 @@ import { logos } from "../lib/logos";
 // 4. add tooltips on each logo?
 
 interface CarouselProps {
-  logos: string[];
-  duration?: number;
+	logos: string[];
+	duration?: number;
 }
 
 interface Logos {
-  name: string;
-  src: string;
+	name: string;
+	src: string;
 }
 
 const Carousel: React.FC = () => {
-  const [logosArr, setLogosArr] = useState([...logos]);
-  const { darkMode } = useContext(GlobalContext) as InitialContext;
+	const [logosArr, setLogosArr] = useState([...logos]);
+	const { darkMode } = useContext(GlobalContext) as InitialContext;
 
-  return (
-    <>
-      <div
-        className={`relative flex items-center justify-center  h-auto py-4 my-4 overflow-hidden  ${
-          !darkMode ? "rounded-none w-full" : "rounded-full w-11/12"
-        } shadow-2xl shadow-dark-2 bg-light`}
-      >
-        <div className="flex w-full justify-evenly pause-animations">
-          <div className="relative flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
-            {logosArr &&
-              logosArr.map((logo) => {
-                return (
-                  <div key={logo.name} className="w-[80px] h-auto">
-                    <Image
-                      width="100"
-                      height="50"
-                      src={logo?.src}
-                      alt={logo.name}
-                    />
-                  </div>
-                );
-              })}
-          </div>
-          <div className="absolute flex items-center w-full justify-evenly animate-marquee2 whitespace-nowrap">
-            {logosArr &&
-              logosArr.map((logo) => {
-                return (
-                  <div key={logo.name} className="w-[80px] h-auto">
-                    <Image
-                      key={logo.name}
-                      width="100"
-                      height="50"
-                      src={logo?.src}
-                      alt={logo.name}
-                    />
-                  </div>
-                );
-              })}
-          </div>
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div
+				className={cn(
+					!darkMode ? "rounded-none w-full" : "rounded-full w-11/12",
+					"relative flex items-center justify-center  h-auto py-4 my-4 overflow-hidden  shadow-2xl shadow-dark-2 bg-light"
+				)}
+			>
+				<div className="flex w-full justify-evenly pause-animations">
+					<div className="relative flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
+						{logosArr &&
+							logosArr.map((logo) => {
+								return (
+									<div key={logo.name} className="w-[80px] h-auto">
+										<Image
+											width="100"
+											height="50"
+											src={logo?.src}
+											alt={logo.name}
+										/>
+									</div>
+								);
+							})}
+					</div>
+					<div className="absolute flex items-center w-full justify-evenly animate-marquee2 whitespace-nowrap">
+						{logosArr &&
+							logosArr.map((logo) => {
+								return (
+									<div key={logo.name} className="w-[80px] h-auto">
+										<Image
+											key={logo.name}
+											width="100"
+											height="50"
+											src={logo?.src}
+											alt={logo.name}
+										/>
+									</div>
+								);
+							})}
+					</div>
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default Carousel;
