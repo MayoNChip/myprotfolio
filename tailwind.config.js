@@ -6,15 +6,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				"black-1": "#191919",
-				"black-2": "#1E1E24",
-				main: "#CED0CE",
-				// main: "#ACC196",
-				"main-dark": "#05798A",
-				secondary: "#404E4D",
-				accent: "#FAA916",
-				"semi-light": "#B9BAA3",
-				light: "#FFFFFF",
+				secondary: "#CD5334",
+				accent: "#CD5334",
+				dark: "#2E282A",
+				light: "#F9FCFB",
 			},
 			backgroundImage: {
 				mainBG: "url('/public/wave-haikei.png')",
@@ -61,6 +56,20 @@ module.exports = {
 				},
 				{ values: theme("textShadow") }
 			);
+		}),
+		plugin(function ({ addUtilities }) {
+			addUtilities({
+				".arrow-hide": {
+					"&::-webkit-inner-spin-button": {
+						"-webkit-appearance": "none",
+						margin: 0,
+					},
+					"&::-webkit-outer-spin-button": {
+						"-webkit-appearance": "none",
+						margin: 0,
+					},
+				},
+			});
 		}),
 	],
 };

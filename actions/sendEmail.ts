@@ -3,7 +3,6 @@
 import { z } from "zod";
 import { ErrorResponse, Resend } from "resend";
 import { Email } from "../app/emails/Email";
-import Error from "next/error";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -24,7 +23,7 @@ export async function sendEmail(prevState: any, formData: FormData) {
 		const contactDataSchema = z.object({
 			email: z.string().email(),
 			name: z.string().min(1),
-			phone: z.string().min(1),
+			phone: z.string(),
 		});
 
 		const validatedData = contactDataSchema.parse(contactData);

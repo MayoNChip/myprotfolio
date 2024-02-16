@@ -3,14 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import { useAnimate, motion, AnimatePresence } from "framer-motion";
-import { getProjectTags, project } from "../../lib/projects";
+import { motion, AnimatePresence } from "framer-motion";
+import { getProjectTags, Project } from "../../lib/projects";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import { cn } from "../../lib/utils";
 
-function ProjectCard(project: project) {
+function ProjectCard(project: Project) {
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
-	const [textAnimationComplete, setTextAnimationComplete] = useState(false);
 	const [projectCardHovered, setProjectCardHovered] = useState<{
 		id?: number;
 		hovered?: boolean;
@@ -22,22 +21,25 @@ function ProjectCard(project: project) {
 
 	useEffect(() => {
 		const projectTags = getProjectTags(project);
-		console.log(projectTags);
 		setProjectTags(projectTags);
-	}, []);
+	}, [project]);
 
 	return (
 		<motion.div
+			style={{ flex: "1 1 0%" }}
 			onHoverStart={() =>
 				setProjectCardHovered({ id: project.id, hovered: true })
 			}
 			onHoverEnd={() =>
 				setProjectCardHovered({ ...projectCardHovered, hovered: false })
 			}
-			initial={{ flexGrow: 1, opacity: 0.5, filter: "grayscale(0.7)" }}
+			initial={{
+				opacity: 0.5,
+				filter: "grayscale(0.7)",
+			}}
 			whileHover={{ flexGrow: 4, opacity: 1, filter: "grayscale(0)" }}
 			transition={{ duration: 0.2 }}
-			className="relative flex flex-col w-full h-screen basis-0 hover:grayscale-0 hover:bg-stone-800 hover:border-black-2 hover:border-4"
+			className="relative flex flex-col w-full h-screen hover:grayscale-0 hover:bg-stone-800 hover:border-black-2 hover:border-4"
 		>
 			<div className="w-full h-full ">
 				<Image
@@ -56,32 +58,10 @@ function ProjectCard(project: project) {
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: 500, opacity: 0 }}
 						transition={{ duration: 0.2, ease: [0.85, 0, 0.15, 1] }}
-						className="z-10 flex items-center self-center justify-between w-full px-4 py-4 shadow-md bg-black-1 h-fit"
+						className="z-10 flex items-center self-center justify-between w-full px-4 py-4 shadow-md bg-dark h-fit"
 					>
 						<div className="relative flex flex-col w-full h-fit">
 							<div className="relative w-fit">
-								<AnimatePresence>
-									{!textAnimationComplete && (
-										<motion.div
-											initial={{ scaleX: 0, transformOrigin: "0%" }}
-											whileHover={{
-												scaleX: 1.05,
-												transformOrigin: "0%",
-												transition: { duration: 0.5 },
-											}}
-											exit={{
-												scaleX: 0,
-												transformOrigin: "0%",
-												transition: { duration: 0.5 },
-											}}
-											onAnimationComplete={() => {
-												setTextAnimationComplete(true);
-											}}
-											transition={{ duration: 0.1 }}
-											className="absolute w-full h-full bg-green-500"
-										></motion.div>
-									)}
-								</AnimatePresence>
 								<motion.h1
 									className={cn(
 										darkMode ? " text-light" : "text-secondary",
@@ -92,17 +72,29 @@ function ProjectCard(project: project) {
 								</motion.h1>
 							</div>
 
-							<div className="flex flex-col items-center  w-full min-h-[200px]">
+							<div className="flex flex-col items-center w-full min-h-[200px]">
 								<div className="min-h-[100px]">
 									<h1
 										className={cn(
-											darkMode ? "text-black-2" : "text-black-1",
-											"text-xl font-light "
+											darkMode ? "text-light" : "text-dark",
+											"text-xl font-light my-4 p-2"
 										)}
 									>
 										{project.description}
 									</h1>
 								</div>
+								{project.example_user && (
+									<div className="h-fit">
+										<h1
+											className={cn(
+												darkMode ? "text-light" : "text-dark",
+												"text-md font-extralight "
+											)}
+										>
+											Test user: {project.example_user}
+										</h1>
+									</div>
+								)}
 								<div
 									className={cn(
 										!project.app_url || !project.repository_url
@@ -123,7 +115,7 @@ function ProjectCard(project: project) {
 												className={cn(
 													"self-end px-6 py-2 font-medium transition-colors rounded text-md ",
 													darkMode
-														? "text-light hover:text-accent bg-stone-500 hover:bg-secondary"
+														? "text-light hover:text-dark/80 bg-stone-500 hover:bg-accent"
 														: "text-black/40 hover:text-secondary/90 bg-bg-secondary/30 hover:bg-secondary/60"
 												)}
 											>

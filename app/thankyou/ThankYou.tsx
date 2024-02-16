@@ -9,14 +9,14 @@ function ThankYou() {
 	return (
 		<div
 			className={cn(
-				darkMode && "bg-black-1",
+				darkMode && "bg-dark",
 				"flex flex-col items-center justify-center w-full h-full  "
 			)}
 		>
 			<div className="flex flex-col justify-between px-4 py-8 space-y-4 rounded-md bg-secondary">
 				<h1
 					className={cn(
-						darkMode ? " text-accent" : "text-black-1",
+						darkMode ? " text-accent" : "text-dark",
 						"font-semibold text-4xl"
 					)}
 				>
@@ -24,7 +24,7 @@ function ThankYou() {
 				</h1>
 				<h1
 					className={cn(
-						darkMode ? " text-black/70" : "text-black-1",
+						darkMode ? " text-black/70" : "text-dark",
 						"font-semibold text-xl"
 					)}
 				>

@@ -4,21 +4,18 @@ import { useContext } from "react";
 import {
 	AnimatePresence,
 	motion,
-	useMotionValueEvent,
 	useScroll,
 	useTransform,
 } from "framer-motion";
-import Inner from "./Layout/Inner";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import { cn } from "../../lib/utils";
 
 // TODO:
 // - add responsivness
-// - edit the image to not have edges
 
 function Hero() {
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
-	const { scrollY, scrollYProgress } = useScroll();
+	const { scrollYProgress } = useScroll();
 	const heyXPosition = useTransform(
 		scrollYProgress,
 		[0.05, 1],
@@ -36,86 +33,9 @@ function Hero() {
 		["0px", "400px"]
 	);
 
-	// useEffect(() => {
-	// 	console.log(isPresent);
-	// 	if (isPresent) {
-	// 		const enterAnimations = async () => {
-	// 			animate(
-	// 				"#hi",
-	// 				{
-	// 					opacity: [0, 1],
-	// 					y: [0, 0],
-	// 					x: [-100, 0],
-	// 					scale: [1, 1],
-	// 				},
-	// 				{ duration: 0.5, ease: "backInOut", delay: 1 }
-	// 			);
-	// 			animate(
-	// 				"#name",
-	// 				{
-	// 					opacity: [0, 1],
-	// 					y: [0, 0],
-	// 					x: [-50, 0],
-	// 					scale: [1],
-	// 				},
-	// 				{ duration: 0.5, ease: "backInOut", delay: 1.5 }
-	// 			);
-	// 			animate(
-	// 				"#job",
-	// 				{
-	// 					opacity: [0, 1],
-	// 					y: [-100, 0],
-	// 					x: [0],
-	// 					scale: [1],
-	// 				},
-	// 				{ duration: 1, ease: "backInOut", delay: 1.8 }
-	// 			);
-	// 		};
-	// 		enterAnimations();
-	// 	} else {
-	// 		const exitAnimations = async () => {
-	// 			animate(
-	// 				"#hi",
-	// 				{
-	// 					opacity: 0,
-
-	// 					x: 100,
-	// 				},
-	// 				{ duration: 0.5, ease: "backInOut", delay: 0.5 }
-	// 			);
-	// 			animate(
-	// 				"#name",
-	// 				{
-	// 					opacity: 0,
-
-	// 					x: 100,
-	// 				},
-	// 				{ duration: 0.5, ease: "backInOut", delay: 0.6 }
-	// 			);
-	// 			animate(
-	// 				"#job",
-	// 				{
-	// 					opacity: 0,
-	// 					x: 100,
-	// 				},
-	// 				{ duration: 1, ease: "backInOut", delay: 0.7 }
-	// 			);
-	// 		};
-	// 		exitAnimations();
-	// 	}
-	// 	// initial={{ opacity: 0, y: 0, x: -100 }}
-	// 	// 			animate={{
-	// 	// 				opacity: 1,
-	// 	// 				y: [0, 200],
-	// 	// 				x: [0, -50],
-	// 	// 				scale: [1, 0.5],
-	// 	// 				transition: { duration: 1, ease: "backInOut" },
-	// 	// 			}}
-	// }, [pathname]);
-
 	return (
 		<AnimatePresence>
-			<div className="flex items-center justify-center w-full h-screen">
+			<div className="flex items-center justify-center w-full h-screen bg-light">
 				<div className="z-[2] flex flex-col whitespace-nowrap">
 					<div className="z-[2] flex flex-col items-center whitespace-nowrap">
 						<motion.span
@@ -129,11 +49,7 @@ function Hero() {
 							}}
 							transition={{ duration: 1, ease: [0.85, 0, 0.15, 1] }}
 							id="hi"
-							className={cn(
-								darkMode ? "text-black-1" : "text-light",
-
-								"md:text-9xl opacity-0 font-bold text-2xl mr-3 z-[2]"
-							)}
+							className="md:text-9xl opacity-0 font-bold text-2xl mr-3 z-[2] text-dark"
 							style={{
 								x: heyXPosition,
 								opacity: opacity,
@@ -160,11 +76,7 @@ function Hero() {
 								x: idoXPosition,
 								opacity: opacity,
 							}}
-							className={cn(
-								darkMode ? "text-black-1" : "text-light",
-
-								"md:text-9xl font-bold flex flex-col text-2xl z-[2]"
-							)}
+							className="md:text-9xl font-bold flex flex-col text-2xl z-[2]  text-dark"
 						>
 							<span>
 								I AM <span className="text-accent">IDO</span>
@@ -173,7 +85,7 @@ function Hero() {
 						<motion.div
 							id="job"
 							className={cn(
-								!darkMode ? "text-black-1" : "text-accent",
+								!darkMode ? "text-dark" : "text-accent",
 								"text-xl flex items-end font-semibold md:text-3xl self-center z-[-2] overflow-hidden"
 							)}
 						>

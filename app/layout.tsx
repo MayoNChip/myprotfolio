@@ -15,12 +15,15 @@ function layout({ children }: Props) {
 	return (
 		<html lang="en">
 			<head />
-			<body className="relative flex flex-col items-center w-screen h-screen overflow-x-hidden scroll-smooth">
+			<body className="relative flex flex-col items-center w-screen h-screen overflow-x-hidden scroll-smooth bg-dark">
 				<ThemeProvider>
-					<AnimatePresence mode="wait" initial={false}>
-						<Navbar />
-						{children}
-					</AnimatePresence>
+					{/* <AnimatePresence mode="wait" initial={false}> */}
+					<Navbar />
+					{children}
+					<p className="z-10 font-extralight text-light">
+						Ido Cohen 2024. this website was created using Next.JS
+					</p>
+					{/* </AnimatePresence> */}
 				</ThemeProvider>
 			</body>
 		</html>

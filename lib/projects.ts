@@ -13,12 +13,13 @@ import expressLogo from "../public/Expressjs.png";
 import chakraLogo from "../public/chakra.png";
 import angularLogo from "../public/angular.png";
 
-type Project = {
+export type Project = {
 	id: number;
 	title: string;
 	description: string;
 	tags: TagNames[];
 	app_url?: string;
+	example_user?: string;
 	repository_url?: string;
 	image: StaticImageData;
 	elementId: string;
@@ -97,7 +98,8 @@ export const projects: Project[] = [
 		id: 1,
 		elementId: "guru",
 		title: "guru - Grocery shop",
-		description: "some description",
+		description:
+			"guru is a grocery shop full stack project, it was a group project as part of my bootcamp at ITC israel. I worked on the frontend side of the project. ",
 		tags: ["React", "ChakraUI", "Frontend", "Javascript"],
 		repository_url: "https://github.com/MayoNChip/group-project-frontend",
 		image: guruImage,
@@ -106,8 +108,10 @@ export const projects: Project[] = [
 		id: 2,
 		title: "do! - Todo's App",
 		elementId: "do",
-		description: "To-do app.",
-		tags: ["AngularJS", "TailwindCSS", "Frontend"],
+		description:
+			"A to do app that was made to learn and practice angular. It was made with angular and tailwindcss and took advantage of the jsonplaceholder api to allow users to login and manage todos. below is an email to login for testing (password does not matter, any 6 characters or more will do). hosted on Vercel.",
+		tags: ["AngularJS", "TailwindCSS", "Frontend", "Typescript"],
+		example_user: "Telly.Hoeger@billy.biz",
 		repository_url: "https://github.com/MayoNChip/angular-todoapp",
 		app_url: "https://angular-todoapp-idoc.vercel.app/",
 		image: ChatAppImage,
@@ -145,5 +149,3 @@ export const projects: Project[] = [
 		image: ChatAppImage,
 	},
 ];
-
-export type project = (typeof projects)[0];

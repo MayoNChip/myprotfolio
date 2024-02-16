@@ -65,7 +65,7 @@ function NewMenu() {
 			>
 				<IoGlassesOutline
 					id="icon"
-					className="absolute z-10 w-8 h-8 text-black-1"
+					className="absolute z-10 w-8 h-8 text-dark"
 				/>
 				{/* <Link href={"/aboutme"}></Link> */}
 
@@ -88,7 +88,7 @@ function NewMenu() {
 								onClick={() => setSelectedId(item.id)}
 								id="menuItem"
 								className={cn(
-									selectedId === item.id ? "bg-black-1/20" : "bg-accent",
+									selectedId === item.id ? "bg-dark/20" : "bg-accent",
 									"h-[95%] px-4 opacity-0 flex items-center  rounded-t-2xl text-light "
 								)}
 							>

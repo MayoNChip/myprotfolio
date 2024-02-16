@@ -9,7 +9,7 @@ function Container({ children }: { children: ReactNode }) {
 	return (
 		<div
 			className={cn(
-				darkMode ? "bg-black-1" : "bg-accent",
+				darkMode ? "bg-dark" : "bg-accent",
 				"flex flex-col w-full h-full m-auto transition-transform"
 			)}
 		>

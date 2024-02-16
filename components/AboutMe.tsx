@@ -11,7 +11,7 @@ function AboutMe() {
 	return (
 		<div
 			className={`${
-				darkMode ? "bg-black-1" : "bg-light "
+				darkMode ? "bg-dark" : "bg-light "
 			} flex flex-col items-center`}
 		>
 			<Image
@@ -22,7 +22,7 @@ function AboutMe() {
 			/>
 			<div
 				className={`text-xl text-light ${
-					darkMode ? "text-light" : "text-black-1"
+					darkMode ? "text-light" : "text-dark"
 				} "flex w-1/2 p-4 mx-16 my-16 text-left h-fit "`}
 			>
 				<h1 className={`my-5 ${!darkMode && "text-black-2"}`}>

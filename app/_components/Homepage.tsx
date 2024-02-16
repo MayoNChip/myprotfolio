@@ -9,14 +9,10 @@ import {
 import { useContext, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
-import { cn } from "../../lib/utils";
 import AboutMe from "./AboutMe";
 import ContactMeForm from "./ContactMe";
 import Hero from "./Hero";
-import Inner from "./Layout/Inner";
 import Projects from "./Projects";
-
-// TODO: remove arrow down from dom when started scrolling
 
 export default function Home() {
 	const { darkMode, refs, setRefs } = useContext(
@@ -61,12 +57,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div
-			className={cn(
-				!darkMode ? "bg-black-1" : "bg-light",
-				"flex flex-col w-full relative h-screen"
-			)}
-		>
+		<div className="relative flex flex-col w-full h-screen bg-dark">
 			<div className="flex items-center self-center justify-center w-1/2 h-full text-white"></div>
 			<div ref={refs[0].ref}>
 				<Hero />
@@ -91,8 +82,6 @@ export default function Home() {
 					bottom: [5, 0, 5],
 				}}
 				transition={{
-					// delay: stagger(0.1, [0, 0.4, 0.8, 1]),
-
 					duration: 0.7,
 					repeat: Infinity,
 				}}
@@ -100,7 +89,7 @@ export default function Home() {
 					opacity: scrolled,
 				}}
 			>
-				<MdKeyboardArrowDown className="z-10 w-8 h-8 text-black-1" />
+				<MdKeyboardArrowDown className="z-10 w-8 h-8 text-dark" />
 			</motion.div>
 		</div>
 	);

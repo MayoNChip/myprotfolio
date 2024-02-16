@@ -1,27 +1,27 @@
 "use client";
 
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, {
+	useContext,
+	useState,
+	useRef,
+	KeyboardEvent,
+	FocusEvent,
+} from "react";
 import { z } from "zod";
 import { FaLinkedin } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io5";
+import { IoGlassesOutline, IoLogoWhatsapp } from "react-icons/io5";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import { cn } from "../../lib/utils";
-import Inner from "./Layout/Inner";
 import { sendEmail } from "../../actions/sendEmail";
-import {
-	useInView,
-	useAnimate,
-	motion,
-	stagger,
-	AnimatePresence,
-} from "framer-motion";
-import { useFormState, useFormStatus } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useFormState } from "react-dom";
 import { BiMailSend } from "react-icons/bi";
+import Link from "next/link";
 
 export const FormValidation = z.object({
 	email: z.string().email(),
-	name: z.string().min(1),
-	phone: z.string().min(1),
+	name: z.string().min(1, { message: "Name is required" }),
+	phone: z.string().min(10).nullish(),
 });
 
 type EmailMessage = {
@@ -32,12 +32,6 @@ type EmailMessage = {
 };
 
 function ContactMeForm() {
-	// Framer motion hooks
-	const [scope, animate] = useAnimate();
-	const formTitle = useRef(null);
-	const titleInView = useInView(formTitle);
-
-	const [emailSent, setEmailSent] = useState(false);
 	const [data, setData] = useState<EmailMessage>({
 		email: undefined,
 		name: undefined,
@@ -45,7 +39,15 @@ function ContactMeForm() {
 		success: false,
 	});
 	const [state, formAction] = useFormState(sendEmail, data);
-	const [emailError, setEmailError] = useState<string>();
+	const [formErrors, setFormErrors] = useState<{
+		name: string | undefined;
+		email: string | undefined;
+		phone: string | undefined;
+	}>({
+		name: undefined,
+		email: undefined,
+		phone: undefined,
+	});
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setData((data) => {
@@ -64,35 +66,50 @@ function ContactMeForm() {
 		});
 	};
 
-	// useEffect(() => {
-	// 	if (titleInView) {
-	// 		animate(
-	// 			"#title-line",
-	// 			{ opacity: [0, 1], y: [200, 0] },
-	// 			{
-	// 				duration: 0.8,
-	// 				delay: stagger(0.1, { ease: [0.24, 0.31, 0.6, 0.9] }),
-	// 				type: "spring",
-	// 			}
-	// 		);
-	// 	} else {
-	// 		animate(
-	// 			"#title-line",
-	// 			{ opacity: [1, 0], y: [0, 200] },
-	// 			{
-	// 				duration: 0.5,
-	// 				ease: [0.24, 0.31, 0.6, 0.9],
-	// 			}
-	// 		);
-	// 	}
-	// }, [titleInView]);
+	const validateField = (
+		event:
+			| KeyboardEvent<HTMLInputElement>
+			| FocusEvent<HTMLInputElement, Element>,
+		id: string
+	) => {
+		const result = FormValidation.safeParse({
+			email: data.email,
+			name: data.name,
+			phone: data.phone,
+		});
+		if (!result.success) {
+			const formatResults = result.error.format();
+			switch (id) {
+				case "name": {
+					setFormErrors({
+						...formErrors,
+						name: formatResults.name?._errors[0],
+					});
+					break;
+				}
+				case "email": {
+					setFormErrors({
+						...formErrors,
+						email: formatResults.email?._errors[0],
+					});
+					break;
+				}
+				case "phone": {
+					setFormErrors({
+						...formErrors,
+						phone: formatResults.phone?._errors[0],
+					});
+					break;
+				}
+			}
+		}
+	};
 
 	return (
 		<div
-			ref={scope}
 			className={cn(
-				darkMode ? "bg-black-1" : "bg-light",
-				"h-screen flex flex-col"
+				darkMode ? "bg-light	" : "bg-light",
+				"h-[100vh] flex flex-col"
 			)}
 		>
 			{state.success ? (
@@ -100,13 +117,12 @@ function ContactMeForm() {
 			) : null}
 			<AnimatePresence mode="wait">
 				{!state.success ? (
-					<div className="flex flex-col items-center self-center justify-center w-1/2 h-full bg-text">
+					<div className="relative flex flex-col items-center self-center justify-center w-1/2 h-full bg-text">
 						<div className="flex items-center self-center">
 							<div
-								ref={formTitle}
 								className={cn(
-									darkMode ? "text-accent/80" : "text-secondary/70",
-									"my-4 flex items-center flex-col leading-[3rem]"
+									darkMode ? "text-accent" : "text-secondary",
+									"my-4 flex items-center flex-col leading-[3.5rem]"
 								)}
 							>
 								<motion.h1
@@ -114,7 +130,7 @@ function ContactMeForm() {
 									whileInView={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: 200 }}
 									transition={{ duration: 0.5, type: "spring" }}
-									className="font-semibold text-[5rem]"
+									className="font-semibold text-[5rem] text-dark"
 								>
 									Let's create
 								</motion.h1>
@@ -122,8 +138,8 @@ function ContactMeForm() {
 									initial={{ opacity: 0, y: 200 }}
 									whileInView={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: 200, rotate: "90deg" }}
-									transition={{ duration: 0.5, type: "spring" }}
-									className="self-center tracking-[0.4rem] text-[3rem] font-extralight pl-1"
+									transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
+									className="self-center tracking-[0.4rem] text-[3rem] font-extralight pl-1 text-dark"
 								>
 									something great
 								</motion.h1>
@@ -132,7 +148,7 @@ function ContactMeForm() {
 									initial={{ opacity: 0, y: 200 }}
 									whileInView={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: 200 }}
-									transition={{ duration: 0.5, type: "spring" }}
+									transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
 									className="text-[6rem] font-semibold tracking-[0.4rem]"
 								>
 									together
@@ -140,66 +156,77 @@ function ContactMeForm() {
 							</div>
 							<form
 								action={formAction}
-								className="flex flex-col items-center justify-center p-6"
+								className="flex flex-col pt-16 ml-4 justify-evenly"
 							>
-								<div>
-									<h2
+								<div className="h-fit">
+									<label
+										htmlFor="name"
 										className={cn(
 											darkMode ? "text-stone-500 " : " text-black-2",
-											"font-extralight text-sm"
+											"font-thin text-sm"
 										)}
 									>
 										Name
-									</h2>
+									</label>
 									<input
 										defaultValue={data.name}
 										onChange={(e) => handleNameChange(e)}
-										placeholder=""
+										onKeyUp={(e) => validateField(e, "name")}
+										onBlur={(e) => validateField(e, "name")}
+										placeholder="Your name"
 										name="name"
 										id="name"
 										required
-										className="px-2 outline-none rounded-xl bg-stone-800/80 active:bg-stone-800/80 text-light"
+										className="px-2 py-[2px] text-sm w-full placeholder:text-light/50 transition-colors rounded-full outline-none font-extralight focus:bg-accent/90 bg-dark/40 text-light"
 									/>
+									<h1 className="text-xs text-accent">{formErrors.name}</h1>
 								</div>
-								<div>
-									<h2
+								<div className="h-fit">
+									<label
+										htmlFor="email"
 										className={cn(
 											darkMode ? "text-stone-500 " : " text-black-2",
 											"font-extralight"
 										)}
 									>
 										Email
-									</h2>
+									</label>
 									<input
 										defaultValue={data.email}
-										placeholder=""
-										className="w-full px-2 outline-none rounded-xl bg-stone-800/80 active:bg-stone-800/80 text-light"
+										placeholder="Your email"
+										className="px-2 py-[2px] text-sm w-full placeholder:text-light/50  transition-colors rounded-full outline-none font-extralight focus:bg-accent/90 bg-dark/40 text-light"
 										name="email"
+										onKeyUp={(e) => validateField(e, "email")}
+										onBlur={(e) => validateField(e, "email")}
 										id="email"
 										type="email"
 										required
 										onChange={(e) => handleEmailChange(e)}
 									></input>
-									{emailError && <h1>{emailError}</h1>}
+									<h1 className="text-xs text-accent">{formErrors.email}</h1>
 								</div>
-								<div>
-									<h2
+								<div className="h-fit">
+									<label
+										htmlFor="phone"
 										className={cn(
 											darkMode ? "text-stone-500 " : " text-black-2",
 											"font-extralight"
 										)}
 									>
 										Phone number
-									</h2>
+									</label>
 									<input
 										defaultValue={data.phone}
 										onChange={(e) => handlePhoneChange(e)}
-										placeholder=""
+										placeholder="Your phone number"
+										onKeyUp={(e) => validateField(e, "phone")}
+										onBlur={(e) => validateField(e, "phone")}
 										name="phone"
 										id="phone"
-										required
-										className="px-2 outline-none rounded-xl bg-stone-800/80 active:bg-stone-800/80 text-stone-400 "
+										type="number"
+										className="px-2 py-[2px] arrow-hide text-sm w-full transition-colors placeholder:text-light/50  rounded-full outline-none font-extralight focus:bg-accent/90 bg-dark/40 text-light"
 									/>
+									<h1 className="text-xs text-accent">{formErrors.phone}</h1>
 								</div>
 								<motion.button
 									whileHover={{
@@ -210,19 +237,33 @@ function ContactMeForm() {
 									}}
 									disabled={!FormValidation.safeParse(data).success}
 									type="submit"
-									className="self-end pr-4 my-4 rounded-full text-accent first-letter:text-sm font-extralight disabled:text-gray-500"
+									className="self-end pr-4 my-4 rounded-full text-accent first-letter:text-sm font-extralight disabled:text-gray-500 h-fit"
 								>
 									<BiMailSend className="w-5 h-5" />
 								</motion.button>
 							</form>
 						</div>
-						<div className="flex items-center self-center justify-center w-1/3 gap-4 my-4">
-							<IoLogoWhatsapp
-								fill="#25D366"
-								opacity={0.7}
-								className="w-8 h-8"
+						<div className="absolute flex items-center self-center justify-around w-1/4 gap-4 py-1 rounded-full bottom-8 bg-dark ">
+							<IoGlassesOutline
+								id="icon"
+								className="absolute z-10 w-8 h-8 text-light"
 							/>
-							<FaLinkedin fill="#0072AD" opacity={0.7} className="w-8 h-8" />
+							<Link
+								href="https://api.whatsapp.com/send/?phone=972545649413&text&type=phone_number&app_absent=0"
+								target="_blank"
+							>
+								<IoLogoWhatsapp
+									fill="#25D366"
+									opacity={0.7}
+									className="w-7 h-7"
+								/>
+							</Link>
+							<Link
+								href="https://www.linkedin.com/in/idocohendev/"
+								target="_blank"
+							>
+								<FaLinkedin fill="#0072AD" opacity={0.7} className="w-7 h-7" />
+							</Link>
 						</div>
 					</div>
 				) : null}

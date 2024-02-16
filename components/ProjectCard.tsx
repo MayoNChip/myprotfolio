@@ -34,7 +34,7 @@ function ProjectCard(project: project) {
 						<div className="min-h-[100px]">
 							<h1
 								className={cn(
-									darkMode ? "text-black-2" : "text-black-1",
+									darkMode ? "text-black-2" : "text-dark",
 									"text-xl font-light "
 								)}
 							>

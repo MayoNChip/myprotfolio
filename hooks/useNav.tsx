@@ -110,26 +110,26 @@ function useNav() {
 		});
 	}, [isAboutMeInView, isContactMeInView, isHeroInView, isProjectsInView]);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (routeByClick) {
-				window.removeEventListener("scroll", handleScroll, false);
-				setRouteByClick(false);
-				return;
-			}
-			const yPos = window.scrollY;
-			const isScrollingUp = yPos < lastYPos;
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		if (routeByClick) {
+	// 			window.removeEventListener("scroll", handleScroll, false);
+	// 			setRouteByClick(false);
+	// 			return;
+	// 		}
+	// 		const yPos = window.scrollY;
+	// 		const isScrollingUp = yPos < lastYPos;
 
-			setNavbarVisable(isScrollingUp);
-			setLastYPos(yPos);
-		};
+	// 		setNavbarVisable(isScrollingUp);
+	// 		setLastYPos(yPos);
+	// 	};
 
-		window.addEventListener("scroll", handleScroll, false);
+	// 	window.addEventListener("scroll", handleScroll, false);
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll, false);
-		};
-	}, [lastYPos, routeByClick]);
+	// 	return () => {
+	// 		window.removeEventListener("scroll", handleScroll, false);
+	// 	};
+	// }, [lastYPos, routeByClick]);
 
 	const handleRouteClick = (routeId: number) => {
 		setRouteByClick(true);

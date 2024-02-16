@@ -79,7 +79,7 @@ export function Navbar() {
 				>
 					<div
 						ref={scope}
-						className="relative flex items-center justify-around w-8 min-h-[32px] whitespace-nowrap rounded-full bg-black-1"
+						className="relative flex items-center justify-around w-8 min-h-[32px] whitespace-nowrap rounded-full bg-dark"
 					>
 						<IoGlassesOutline
 							id="icon"
