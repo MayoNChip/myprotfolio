@@ -1,26 +1,16 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
-import React, { useState, useEffect, useContext } from "react";
-import { InitialContext, GlobalContext } from "../context/GlobalContext";
-import { logos } from "../lib/logos";
-import { cn } from "../lib/utils";
+import Image from "next/image";
+import React, { useState, useContext } from "react";
+import { InitialContext, GlobalContext } from "../../context/GlobalContext";
+import { logos } from "../../lib/logos";
+import { cn } from "../../lib/utils";
 
 // TODO:
 // 1. make carisale endlessly spin - Done
 // 2. add all other logos
 // 3. pasue scroll on hover - Done
 // 4. add tooltips on each logo?
-
-interface CarouselProps {
-	logos: string[];
-	duration?: number;
-}
-
-interface Logos {
-	name: string;
-	src: string;
-}
 
 const Carousel: React.FC = () => {
 	const [logosArr, setLogosArr] = useState([...logos]);

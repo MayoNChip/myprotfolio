@@ -1,7 +1,7 @@
-import AboutMe from "../components/AboutMe";
 import Homepage from "../app/_components/Homepage";
 import Projects from "../app/_components/Projects";
 import ContactMeForm from "../app/_components/ContactMe";
+import AboutMe from "../app/_components/AboutMe";
 
 export const menuItems = [
 	{

@@ -1,10 +1,5 @@
 "use client";
-import {
-	useInView,
-	useMotionValue,
-	useMotionValueEvent,
-	useScroll,
-} from "framer-motion";
+import { useInView } from "framer-motion";
 import {
 	createContext,
 	Dispatch,

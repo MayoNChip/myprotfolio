@@ -23,17 +23,17 @@ export default function Home() {
 	const [scope, animate] = useAnimate();
 	const isInView = useInView(scope);
 
-	useEffect(() => {
-		if (isInView) {
-			animate("#name", {
-				y: [100, 0],
-				transition: {
-					duration: 4,
-					ease: [0.6, 0.01, -0.05, 0.9],
-				},
-			});
-		}
-	}, [isInView]);
+	// useEffect(() => {
+	// 	if (isInView) {
+	// 		animate("#name", {
+	// 			y: [100, 0],
+	// 			transition: {
+	// 				duration: 4,
+	// 				ease: [0.6, 0.01, -0.05, 0.9],
+	// 			},
+	// 		});
+	// 	}
+	// }, [isInView]);
 
 	useEffect(() => {
 		setRefs([
