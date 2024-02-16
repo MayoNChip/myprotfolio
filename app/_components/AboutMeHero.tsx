@@ -114,16 +114,16 @@ function AboutMeImage() {
 				className="absolute flex flex-col self-center text-6xl opacity-0 bottom-40 w-fit text-light"
 			>
 				<motion.div className="flex gap-2 font-extralight">
-					<h1>"Programming isn't about what you</h1>
+					<h1>&quot;Programming isn&apos;t about what you</h1>
 					<h1 className="font-black text-accent whitespace-nowrap">know</h1>
 					<h1>.</h1>
 				</motion.div>
 				<motion.div className="flex items-center pl-12 space-x-2 font-extralight">
-					<h1>it's about what you can </h1>
+					<h1>it&apos;s about what you can </h1>
 					<h1 className="font-black text-accent whitespace-nowrap">
 						figure out
 					</h1>
-					<h1>."</h1>
+					<h1>.&quot;</h1>
 					<h1 className="self-end text-2xl text-light/40">- Chris Pine</h1>
 				</motion.div>
 			</motion.div>
