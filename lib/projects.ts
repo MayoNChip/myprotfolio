@@ -12,6 +12,9 @@ import tsLogo from "../public/Typescript_logo_2020.svg";
 import expressLogo from "../public/Expressjs.png";
 import chakraLogo from "../public/chakra.png";
 import angularLogo from "../public/angular.png";
+import postgresLogo from "../public/postgreslogo.png";
+import mongoDBLogo from "../public/mongodblogo.png";
+import framerMotionLogo from "../public/framermotion.svg";
 
 export type Project = {
 	id: number;
@@ -83,9 +86,15 @@ export const tags = [
 	},
 	{
 		name: "postgreSQL",
+		logo: postgresLogo,
 	},
 	{
 		name: "MongoDB",
+		logo: mongoDBLogo,
+	},
+	{
+		name: "FramerMotion",
+		logo: framerMotionLogo,
 	},
 ];
 
@@ -133,7 +142,7 @@ export const projects: Project[] = [
 		elementId: "debate",
 		description: "some description",
 		tags: ["AngularJS", "TailwindCSS", "Full Stack"],
-		app_url: "http://www.google.com",
+		app_url: "http://www.debateit.app",
 		repository_url: "",
 		image: DebateItImage,
 	},

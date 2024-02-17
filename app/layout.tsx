@@ -3,6 +3,13 @@ import React from "react";
 import ThemeProvider from "../context/GlobalContext";
 import "../styles/globals.css";
 import { Navbar } from "./_components/Navbar";
+import { Josefin_Sans } from "next/font/google";
+
+const josefinSans = Josefin_Sans({
+	subsets: ["latin"],
+	variable: "--font-josefin",
+	display: "swap",
+});
 
 interface Props {
 	children: React.ReactNode;
@@ -10,15 +17,13 @@ interface Props {
 
 function layout({ children }: Props) {
 	return (
-		<html lang="en">
+		<html lang="en" className={josefinSans.className}>
 			<head />
-			<body className="relative flex flex-col items-center w-screen h-screen overflow-x-hidden scroll-smooth bg-dark">
+
+			<body className="relative flex flex-col items-center w-screen h-screen overflow-x-hidden font-josefin scroll-smooth bg-dark ">
 				<ThemeProvider>
 					<Navbar />
 					{children}
-					<p className="z-10 font-extralight text-light">
-						Ido Cohen 2024. this website was created using Next.JS
-					</p>
 				</ThemeProvider>
 			</body>
 		</html>

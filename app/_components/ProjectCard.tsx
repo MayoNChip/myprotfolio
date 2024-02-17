@@ -39,9 +39,9 @@ function ProjectCard(project: Project) {
 			}}
 			whileHover={{ flexGrow: 4, opacity: 1, filter: "grayscale(0)" }}
 			transition={{ duration: 0.2 }}
-			className="relative flex flex-col w-full h-screen hover:grayscale-0 hover:bg-stone-800 hover:border-black-2 hover:border-4"
+			className="relative flex flex-col w-full h-screen hover:bg-stone-800 hover:border-dark hover:border-[10px] transition-all"
 		>
-			<div className="w-full h-full ">
+			<div className="w-full h-full">
 				<Image
 					className="img"
 					src={project.image}

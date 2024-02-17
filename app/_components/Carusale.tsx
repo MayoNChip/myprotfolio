@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState, useContext } from "react";
 import { InitialContext, GlobalContext } from "../../context/GlobalContext";
 import { logos } from "../../lib/logos";
+import { tags } from "../../lib/projects";
 import { cn } from "../../lib/utils";
 
 // TODO:
@@ -12,53 +13,57 @@ import { cn } from "../../lib/utils";
 // 3. pasue scroll on hover - Done
 // 4. add tooltips on each logo?
 
-const Carousel: React.FC = () => {
-	const [logosArr, setLogosArr] = useState([...logos]);
+const Carousel = () => {
+	const [logosArr, setLogosArr] = useState([...tags]);
 	const { darkMode } = useContext(GlobalContext) as InitialContext;
 
 	return (
-		<>
+		<div className="self-center w-full my-10">
 			<div
 				className={cn(
-					!darkMode ? "rounded-none w-full" : "rounded-full w-11/12",
-					"relative flex items-center justify-center  h-auto py-4 my-4 overflow-hidden  shadow-2xl shadow-dark-2 bg-light"
+					!darkMode ? "rounded-none w-full" : "rounded-none w-full",
+					"relative flex items-center justify-center mx-auto  h-auto py-4 my-4 overflow-hidden  shadow-accent/50 shadow-[0_0_20px_0]  bg-light/80"
 				)}
 			>
-				<div className="flex w-full justify-evenly pause-animations">
-					<div className="relative flex items-center w-full justify-evenly animate-marquee whitespace-nowrap">
+				<div className="flex justify-around w-full animation-pause">
+					<div className="relative flex items-center justify-around w-full animate-marquee whitespace-nowrap">
 						{logosArr &&
-							logosArr.map((logo) => {
-								return (
-									<div key={logo.name} className="w-[80px] h-auto">
-										<Image
-											width="100"
-											height="50"
-											src={logo?.src}
-											alt={logo.name}
-										/>
-									</div>
-								);
-							})}
+							logosArr
+								.filter((logo) => logo.logo)
+								.map((logo) => {
+									return (
+										<div key={logo.name} className="w-[80px] h-auto">
+											<Image
+												width="100"
+												height="50"
+												src={logo.logo}
+												alt={logo.name}
+											/>
+										</div>
+									);
+								})}
 					</div>
-					<div className="absolute flex items-center w-full justify-evenly animate-marquee2 whitespace-nowrap">
+					<div className="absolute flex items-center justify-around w-full animate-marquee2 whitespace-nowrap animation-pause">
 						{logosArr &&
-							logosArr.map((logo) => {
-								return (
-									<div key={logo.name} className="w-[80px] h-auto">
-										<Image
-											key={logo.name}
-											width="100"
-											height="50"
-											src={logo?.src}
-											alt={logo.name}
-										/>
-									</div>
-								);
-							})}
+							logosArr
+								.filter((logo) => logo.logo)
+								.map((logo) => {
+									return (
+										<div key={logo.name} className="w-[80px] h-auto">
+											<Image
+												key={logo.name}
+												width="100"
+												height="50"
+												src={logo.logo}
+												alt={logo.name}
+											/>
+										</div>
+									);
+								})}
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

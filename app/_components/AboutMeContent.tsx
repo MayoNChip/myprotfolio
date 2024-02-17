@@ -8,18 +8,44 @@ import {
 	MotionValue,
 	useInView,
 	useAnimation,
+	useMotionValue,
 } from "framer-motion";
 import React, { ReactNode, useEffect, useRef } from "react";
 import { cn } from "../../lib/utils";
 
 function AboutMeContent() {
-	const ref = useRef(null);
+	const parentRef = useRef(null);
+	const firstParagraphRef = useRef(null);
+	const secondParagraphRef = useRef(null);
 	const { scrollYProgress } = useScroll({
-		target: ref,
-		offset: ["start 0.7", "end 0.4"],
+		target: firstParagraphRef,
+		offset: ["start 0.7", "end 0.6"],
 	});
 
-	const text = `My name is Ido Cohen and I am a self-proclaimed tech-nerd and lover of
+	const secondParagraphScrollYProgress = useScroll({
+		target: secondParagraphRef,
+		offset: ["start 0.7", "end 0.5"],
+	});
+
+	const parentRefScrollYProgress = useScroll({
+		target: parentRef,
+		offset: ["start 0.7", "end 0.5"],
+	});
+
+	const progress = useMotionValue(0);
+
+	const firstTitleParallex = useTransform(
+		parentRefScrollYProgress.scrollYProgress,
+		[0, 1],
+		[50, -100]
+	);
+	const secondTitleParallex = useTransform(
+		parentRefScrollYProgress.scrollYProgress,
+		[0, 1],
+		[100, -100]
+	);
+
+	const firstParagraph = `My name is Ido Cohen and I am a self-proclaimed tech-nerd and lover of
 	all things innovative. Based in Israel, I have been fascinated with
 	technology from a young age and my passion has only continued to grow. I
 	am a lifelong learner, with a love for science and an insatiable
@@ -29,7 +55,9 @@ function AboutMeContent() {
 	working as a dev team manager at Partner for the past 4 years, on a
 	product in the call centers and telephony field. My expertise in this
 	field and strong problem-solving skills have allowed me to effectively
-	lead my team and bring innovative solutions to the table. But what sets me apart from your average developer is my eclectic mix of
+	lead my team and bring innovative solutions to the table.`;
+
+	const secondParagraph = `what sets me apart from your average developer is my eclectic mix of
 	interests and hobbies. I have a deep love for photography and even had
 	the privilege of turning my passion into a business as an independent
 	studio owner. In addition, I have studied 3D modeling and animation,
@@ -44,46 +72,120 @@ function AboutMeContent() {
 	technology for good, I am always on the lookout for the next adventure
 	and eager to learn and grow along the way.`;
 
-	const words = text.split(" ");
-	const wordsCount = words.length;
-	const wordSpace = 1 / wordsCount;
+	const firstParagraphWords = firstParagraph.split(" ");
+	const firstParagraphWordsCount = firstParagraphWords.length;
+	const firstParagraphWordSpace = 1 / firstParagraphWordsCount;
+	const secondParagraphWords = secondParagraph.split(" ");
+	const secondParagraphWordsCount = secondParagraphWords.length;
+	const secondParagraphWordSpace = 1 / secondParagraphWordsCount;
 
 	return (
-		<div className="relative flex-col flex self-center my-20 min-h-[1000px] w-1/2   font-extralight text-2xl">
-			<div
-				ref={ref}
-				className="flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline"
-			>
-				{words.map((word, index) => {
-					const start = index / wordsCount;
-					const end = start + wordSpace;
-					const range = [start, end];
-					if (index === 0) {
-						return (
-							<Word key={index} range={range} progress={scrollYProgress} larger>
-								{word}
-							</Word>
-						);
-					}
-					return (
-						<Word key={index} range={range} progress={scrollYProgress}>
-							{word}
-						</Word>
-					);
-				})}
+		<div className="relative flex flex-col self-center w-full px-40 my-12 text-2xl h-fit font-extralight">
+			<div className="flex flex-col h-full" ref={parentRef}>
+				<div className="relative w-1/2" ref={firstParagraphRef}>
+					{/* <motion.h1
+						style={{
+							y: firstTitleParallex,
+						}}
+						// whileInView={{ opacity: [0, 1], y: [100, 0] }}
+						className="absolute font-semibold text-8xl -top-[10%] -left-[15%] text-accent/30 "
+					>
+						WHO AM I?
+					</motion.h1> */}
+					<div className="flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline">
+						{firstParagraphWords.map((word, index) => {
+							const start = index / firstParagraphWordsCount;
+							const end = start + firstParagraphWordSpace;
+							const range = [start, end];
+							if (index === 0) {
+								return (
+									<Word
+										key={index}
+										range={range}
+										progress={scrollYProgress}
+										larger
+									>
+										{word}
+									</Word>
+								);
+							}
+							return (
+								<Word key={index} range={range} progress={scrollYProgress}>
+									{word}
+								</Word>
+							);
+						})}
+					</div>
+					<p className="absolute flex flex-wrap top-0 self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch  items-baseline">
+						{firstParagraphWords.map((word, index) => {
+							if (index === 0) {
+								return (
+									<span key={index} className="text-5xl font-bold">
+										{word}
+									</span>
+								);
+							}
+							return <span key={index}>{word}</span>;
+						})}
+					</p>
+				</div>
+				<div
+					className="relative self-end w-1/2 h-full mt-40"
+					ref={secondParagraphRef}
+				>
+					<motion.h1
+						style={{
+							y: secondTitleParallex,
+						}}
+						// whileInView={{ opacity: [0, 1], y: [100, 0] }}
+						className="absolute font-semibold text-8xl -top-[10%] -left-[15%] text-accent/30 "
+					>
+						WHY ME?
+					</motion.h1>
+					<div
+						className="flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline"
+						ref={secondParagraphRef}
+					>
+						{secondParagraphWords.map((word, index) => {
+							const start = index / secondParagraphWordsCount;
+							const end = start + secondParagraphWordSpace;
+							const range = [start, end];
+							if (index === 0) {
+								return (
+									<Word
+										key={index}
+										range={range}
+										progress={secondParagraphScrollYProgress.scrollYProgress}
+									>
+										{word}
+									</Word>
+								);
+							}
+							return (
+								<Word
+									key={index}
+									range={range}
+									progress={secondParagraphScrollYProgress.scrollYProgress}
+								>
+									{word}
+								</Word>
+							);
+						})}
+						<p className="absolute flex flex-wrap top-0 self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch  items-baseline">
+							{secondParagraphWords.map((word, index) => {
+								// if (index === 0) {
+								// 	return (
+								// 		<span key={index} className="text-5xl font-bold">
+								// 			{word}
+								// 		</span>
+								// 	);
+								// }
+								return <span key={index}>{word}</span>;
+							})}
+						</p>
+					</div>
+				</div>
 			</div>
-			<p className="absolute flex flex-wrap self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch  items-baseline">
-				{words.map((word, index) => {
-					if (index === 0) {
-						return (
-							<span key={index} className="text-5xl font-semibold">
-								{word}
-							</span>
-						);
-					}
-					return <span key={index}>{word}</span>;
-				})}
-			</p>
 		</div>
 	);
 }
@@ -104,9 +206,6 @@ const Word = ({
 	const controls = useAnimation();
 
 	const opacity = useTransform(progress, range, [0, 1]);
-	const reveal = useTransform(progress, range, ["-100px", "100px"], {
-		clamp: false,
-	});
 	const ref = useRef(null);
 	const isInView = useInView(ref);
 
@@ -121,14 +220,13 @@ const Word = ({
 	return (
 		<div ref={ref} className="relative overflow-hidden">
 			<motion.span
-				className={cn("text-light", larger && "text-5xl  font-semibold")}
+				className={cn("text-light", larger && "text-5xl  font-bold")}
 				style={{ opacity }}
 			>
 				{children}
 			</motion.span>
 			<motion.span
 				transition={{ duration: 0.5 }}
-				style={{ y: reveal }}
 				className="absolute z-20 w-full h-full bg-accent"
 			/>
 		</div>

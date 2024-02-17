@@ -34,10 +34,10 @@ function AboutMeImage() {
 
 	const pulseVariants = {
 		visable: {
-			boxShadow: "-1px -1px 29px -4px rgba(205,83,52,0.09)",
+			boxShadow: "-1px -1px 29px -4px rgba(205,83,52,0.50)",
 		},
 		hidden: {
-			boxShadow: "-1px -1px 29px -4px rgba(205,83,52,0.75)",
+			boxShadow: "-1px -1px 29px -4px rgba(205,83,52,0.85)",
 		},
 	};
 	// const qouteVariants: Variants = {
@@ -82,7 +82,11 @@ function AboutMeImage() {
 						initial="visable"
 						animate="hidden"
 						className="rounded-full"
-						transition={{ duration: 2, repeat: Infinity }}
+						transition={{
+							duration: 0.8,
+							repeat: Infinity,
+							repeatType: "reverse",
+						}}
 					>
 						<motion.div
 							// variants={firstImageVariants}
@@ -111,7 +115,7 @@ function AboutMeImage() {
 
 			<motion.div
 				ref={scope}
-				className="absolute flex flex-col self-center text-6xl opacity-0 bottom-40 w-fit text-light"
+				className="absolute flex flex-col p-4 text-6xl opacity-0 bottom-14 left-48 w-fit text-light "
 			>
 				<motion.div className="flex gap-2 font-extralight">
 					<h1>&quot;Programming isn&apos;t about what you</h1>
@@ -124,8 +128,10 @@ function AboutMeImage() {
 						figure out
 					</h1>
 					<h1>.&quot;</h1>
-					<h1 className="self-end text-2xl text-light/40">- Chris Pine</h1>
 				</motion.div>
+				<h1 className="self-start pl-24 text-2xl font-light text-accent/30">
+					Chris Pine
+				</h1>
 			</motion.div>
 		</motion.div>
 	);

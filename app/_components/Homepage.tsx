@@ -10,7 +10,9 @@ import { useContext, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import AboutMe from "./AboutMe";
+import Carousel from "./Carusale";
 import ContactMeForm from "./ContactMe";
+import Footer from "./Footer";
 import Hero from "./Hero";
 import Projects from "./Projects";
 
@@ -62,15 +64,19 @@ export default function Home() {
 			<div ref={refs[0].ref}>
 				<Hero />
 			</div>
-			<div ref={refs[1].ref}>
+			<div className="flex flex-col" ref={refs[1].ref}>
 				<AboutMe />
+				<Carousel />
 			</div>
-
 			<div ref={refs[2].ref}>
 				<Projects />
 			</div>
 			<div ref={refs[3].ref}>
 				<ContactMeForm />
+			</div>
+
+			<div className="h-screen">
+				<Footer />
 			</div>
 
 			<motion.div
