@@ -1,8 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { RefObject } from "react";
 
-function RevealText({ text }: { text: string }) {
+function RevealText({
+	text,
+	ref,
+}: {
+	text: string;
+	ref: RefObject<HTMLDivElement>;
+}) {
 	return <div></div>;
 }
 

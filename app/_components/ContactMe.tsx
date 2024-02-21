@@ -17,6 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useFormState } from "react-dom";
 import { BiMailSend } from "react-icons/bi";
 import Link from "next/link";
+import EmailSent from "./EmailSent";
 
 export const FormValidation = z.object({
 	email: z.string().email(),
@@ -109,14 +110,13 @@ function ContactMeForm() {
 		<div
 			className={cn(
 				darkMode ? "bg-light	" : "bg-light",
-				"h-[100vh] flex flex-col"
+				"h-screen flex flex-col"
 			)}
 		>
-			{state.success ? (
-				<div className="h-full text-4xl text-accent">Email sent</div>
-			) : null}
 			<AnimatePresence mode="wait">
 				{!state.success ? (
+					<EmailSent />
+				) : (
 					<div className="relative flex flex-col items-center self-center justify-center w-1/2 h-full bg-text">
 						<div className="flex items-center self-center">
 							<div
@@ -266,7 +266,11 @@ function ContactMeForm() {
 							</Link>
 						</div>
 					</div>
-				) : null}
+				)}
+
+				{/* {!state.success ? (
+					
+				) : null} */}
 			</AnimatePresence>
 		</div>
 	);

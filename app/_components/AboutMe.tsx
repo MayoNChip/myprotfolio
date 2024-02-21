@@ -7,7 +7,7 @@ import AboutMeHero from "./AboutMeHero";
 import AboutMeContent from "./AboutMeContent";
 
 function AboutMe() {
-	const { darkMode, refs } = useContext(GlobalContext) as InitialContext;
+	const { refs } = useContext(GlobalContext) as InitialContext;
 	const [scope, animate] = useAnimate();
 	const [isPresent, safeToRemove] = usePresence();
 	const isInView = useInView(scope);
