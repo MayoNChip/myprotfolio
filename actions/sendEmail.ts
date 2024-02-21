@@ -35,7 +35,9 @@ export async function sendEmail(prevState: any, formData: FormData) {
 			react: Email(validatedData),
 		});
 
-		console.log(data);
+		if (data.error) {
+			return { success: false, message: data.error };
+		}
 		return {
 			success: true,
 		};

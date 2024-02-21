@@ -1,11 +1,5 @@
 "use client";
-import {
-	motion,
-	useAnimate,
-	useInView,
-	useScroll,
-	useTransform,
-} from "framer-motion";
+import { motion, useAnimate, useScroll, useTransform } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
@@ -17,13 +11,9 @@ import Hero from "./Hero";
 import Projects from "./Projects";
 
 export default function Home() {
-	const { darkMode, refs, setRefs } = useContext(
-		GlobalContext
-	) as InitialContext;
+	const { refs, setRefs } = useContext(GlobalContext) as InitialContext;
 	const { scrollY } = useScroll();
 	const scrolled = useTransform(scrollY, [0, 200], [1, 0]);
-	const [scope, animate] = useAnimate();
-	const isInView = useInView(scope);
 
 	// useEffect(() => {
 	// 	if (isInView) {

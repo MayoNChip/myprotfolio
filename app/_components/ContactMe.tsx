@@ -114,8 +114,10 @@ function ContactMeForm() {
 			)}
 		>
 			<AnimatePresence mode="wait">
-				{!state.success ? (
+				{state.success && !state.message ? (
 					<EmailSent />
+				) : state.message ? (
+					<EmailSent error={state.message} />
 				) : (
 					<div className="relative flex flex-col items-center self-center justify-center w-1/2 h-full bg-text">
 						<div className="flex items-center self-center">

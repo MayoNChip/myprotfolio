@@ -64,7 +64,7 @@ export function Navbar() {
 		} else {
 			animateExitManu();
 		}
-	}, []);
+	}, [isPresent, animate, scope]);
 
 	return (
 		<>

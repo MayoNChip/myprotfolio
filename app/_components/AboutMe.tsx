@@ -9,7 +9,6 @@ import AboutMeContent from "./AboutMeContent";
 function AboutMe() {
 	const { refs } = useContext(GlobalContext) as InitialContext;
 	const [scope, animate] = useAnimate();
-	const [isPresent, safeToRemove] = usePresence();
 	const isInView = useInView(scope);
 	const parentRef = useRef(null);
 	const heroRef = useRef<HTMLDivElement>(null);
@@ -43,7 +42,8 @@ function AboutMe() {
 		};
 
 		enterAnimations();
-	}, [refs[2], isPresent]);
+	}, [refs[2], isInView, animate]);
+
 	return (
 		<motion.div
 			ref={parentRef}
