@@ -127,9 +127,10 @@ export const projects: Project[] = [
 	},
 	{
 		id: 3,
-		title: "Pet Adoption App",
+		title: "BestPals - Pet Adoption App",
 		elementId: "pet",
-		description: "Pet Adoption.",
+		description:
+			"BestPals is a pet adoption app. Made with React and ChakraUI for the frontend, mongoDB, express and cloudinary for the backend. originally it was coded in javascript and later migrated to typescript. users can foster or adopt pets. The administrator can add and edit pets. hosted on Vercel. You are welcome to register and try it out.",
 		tags: ["React", "Full Stack", "ChakraUI", "MongoDB", "Express"],
 		app_url: "https://full-stack-pet-adoption-mayo-n-chip.vercel.app/",
 		repository_url:
@@ -140,21 +141,22 @@ export const projects: Project[] = [
 		id: 4,
 		title: "Debate It",
 		elementId: "debate",
-		description: "some description",
-		tags: ["AngularJS", "TailwindCSS", "Full Stack"],
+		description:
+			"Debate It is a live debating app. Made with AngularJS and TailwindCSS for the frontend, mySQL, express and some pyton for the backend. it utilizes socket.io for live chat and peers for the video call. users can create and join rooms as debaters, watch live debates that are currently in progress and chat with other people. users can also watch previous debate sessions in the archives. hosted on AWS.",
+		tags: ["AngularJS", "TailwindCSS", "Full Stack", "mySQL"],
 		app_url: "http://www.debateit.app",
 		repository_url: "",
 		image: DebateItImage,
 	},
-	{
-		id: 5,
-		title: "Shiftin'",
-		elementId: "shiftin",
-		description:
-			"Shiftin' is an application for scheduling shifts and work force management.",
-		tags: ["Next", "React", "TailwindCSS", "Full Stack", "postgreSQL"],
-		app_url: "http://www.google.com",
-		repository_url: "",
-		image: ChatAppImage,
-	},
+	// {
+	// 	id: 5,
+	// 	title: "Shiftin'",
+	// 	elementId: "shiftin",
+	// 	description:
+	// 		"Shiftin' is an application for scheduling shifts and work force management.",
+	// 	tags: ["Next", "React", "TailwindCSS", "Full Stack", "postgreSQL"],
+	// 	app_url: "http://www.google.com",
+	// 	repository_url: "",
+	// 	image: ChatAppImage,
+	// },
 ];
