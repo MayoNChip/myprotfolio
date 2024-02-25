@@ -32,12 +32,8 @@ export async function sendEmail(prevState: any, formData: FormData) {
 			from: "newworklead@idocodev.com",
 			to: "idoic44@gmail.com",
 			subject: "New Job Lead",
-			react: Email({
-				firstName: "ido",
-			}),
+			react: Email(validatedData),
 		});
-
-		console.log(data);
 
 		if (data.error) {
 			return { success: false, message: data.error };
