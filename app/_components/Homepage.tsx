@@ -1,8 +1,9 @@
 "use client";
-import { motion, useAnimate, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
+import useScreenSize from "../../hooks/useScreenSize";
 import AboutMe from "./AboutMe";
 import Carousel from "./Carusale";
 import ContactMeForm from "./ContactMe";
@@ -56,6 +57,7 @@ export default function Home() {
 			</div>
 			<div className="flex flex-col" ref={refs[1].ref}>
 				<AboutMe />
+
 				<Carousel />
 			</div>
 			<div ref={refs[2].ref}>

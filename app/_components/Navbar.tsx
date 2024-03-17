@@ -74,12 +74,12 @@ export function Navbar() {
 					animate={{ y: navbarVisable ? 0 : -100 }}
 					exit={{ y: -100 }}
 					transition={{ duration: 0.5, ease: [0.24, 0.31, 0.6, 0.9] }}
-					className=" self-center flex justify-around fixed items-center w-full my-10 min-h-[32px] z-[999]"
+					className=" self-center flex justify-around fixed items-center w-1/3 md:w-full my-10 min-h-[32px] z-[999]"
 					key="something"
 				>
 					<div
 						ref={scope}
-						className="relative flex items-center justify-around w-8 min-h-[32px] whitespace-nowrap rounded-full bg-dark"
+						className="relative flex items-center md:justify-around min-h-[32px] whitespace-nowrap md:rounded-full bg-dark"
 					>
 						<IoGlassesOutline
 							id="icon"
@@ -91,7 +91,7 @@ export function Navbar() {
 								<div
 									id="menuItems"
 									key={route.id}
-									className="relative hidden h-full"
+									className="relative hidden h-full px-2"
 								>
 									{inViewComponentId === route.id ? (
 										<motion.div

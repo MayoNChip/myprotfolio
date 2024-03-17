@@ -2,48 +2,41 @@
 
 import { z } from "zod";
 import { ErrorResponse, Resend } from "resend";
-import { Email } from "../app/emails/Email";
+import { EmailTemplate } from "../app/emails/Email";
+import { FormSchema } from "../lib/ContactMeFormSchema";
+
+type FormDataType = z.infer<typeof FormSchema>;
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmail(prevState: any, formData: FormData) {
-	"use server";
+export async function sendEmail(formData: FormDataType) {
+  "use server";
+  const result = FormSchema.safeParse(formData);
+  console.log(result);
 
-	try {
-		const name = formData.get("name");
-		const email = formData.get("email");
-		const phone = formData.get("phone");
+  if (result.success) {
+    try {
+      const { data, error } = await resend.emails.send({
+        from: "newworklead@idocodev.com",
+        to: "idocodev@gmail.com",
+        subject: "New Job Lead",
+        react: EmailTemplate(result.data),
+        text: "hello",
+      });
 
-		const contactData = {
-			name,
-			email,
-			phone,
-		};
+      console.log(data);
 
-		const contactDataSchema = z.object({
-			email: z.string().email(),
-			name: z.string().min(1),
-			phone: z.string(),
-		});
-
-		const validatedData = contactDataSchema.parse(contactData);
-
-		const data = await resend.emails.send({
-			from: "newworklead@idocodev.com",
-			to: "idoic44@gmail.com",
-			subject: "New Job Lead",
-			react: Email(validatedData),
-		});
-
-		if (data.error) {
-			return { success: false, message: data.error };
-		}
-		return {
-			success: true,
-		};
-	} catch (error) {
-		console.log("send email error", error);
-		const err = error as ErrorResponse;
-		return { success: false };
-	}
+      return {
+        success: true,
+        data,
+      };
+    } catch (error) {
+      console.log("send email error", error);
+      const err = error as ErrorResponse;
+      return { success: false, error: err.message };
+    }
+  }
+  if (result.error) {
+    return { success: false, error: result.error.format() };
+  }
 }

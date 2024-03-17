@@ -15,6 +15,7 @@ import angularLogo from "../public/angular.png";
 import postgresLogo from "../public/postgreslogo.png";
 import mongoDBLogo from "../public/mongodblogo.png";
 import framerMotionLogo from "../public/framermotion.svg";
+import bestPalsProject from "../public/bestpals.png";
 
 export type Project = {
 	id: number;
@@ -26,6 +27,10 @@ export type Project = {
 	repository_url?: string;
 	image: StaticImageData;
 	elementId: string;
+	hosting?: {
+		frontend?: string;
+		backend?: string;
+	};
 };
 
 // Convert the tags array to a mapped type
@@ -124,29 +129,40 @@ export const projects: Project[] = [
 		repository_url: "https://github.com/MayoNChip/angular-todoapp",
 		app_url: "https://angular-todoapp-idoc.vercel.app/",
 		image: ChatAppImage,
+		hosting: {
+			frontend: "Vercel",
+		},
 	},
 	{
 		id: 3,
 		title: "BestPals - Pet Adoption App",
 		elementId: "pet",
 		description:
-			"BestPals is a pet adoption app. Made with React and ChakraUI for the frontend, mongoDB, express and cloudinary for the backend. originally it was coded in javascript and later migrated to typescript. users can foster or adopt pets. The administrator can add and edit pets. hosted on Vercel. You are welcome to register and try it out.",
+			"BestPals is a pet adoption app. Made with React and ChakraUI for the frontend, mongoDB, express and cloudinary for the backend. originally it was coded in javascript and later migrated to typescript. users can foster or adopt pets. The administrator can add and edit pets and see the admin dashboard. You are welcome to register and try it out.",
 		tags: ["React", "Full Stack", "ChakraUI", "MongoDB", "Express"],
 		app_url: "https://full-stack-pet-adoption-mayo-n-chip.vercel.app/",
 		repository_url:
 			"https://github.com/MayoNChip/full-stack-pet-adoption-MayoNChip",
-		image: guruImage,
+		image: bestPalsProject,
+		hosting: {
+			frontend: "Vercel",
+			backend: "AWS",
+		},
 	},
 	{
 		id: 4,
 		title: "Debate It",
 		elementId: "debate",
 		description:
-			"Debate It is a live debating app. Made with AngularJS and TailwindCSS for the frontend, mySQL, express and some pyton for the backend. it utilizes socket.io for live chat and peers for the video call. users can create and join rooms as debaters, watch live debates that are currently in progress and chat with other people. users can also watch previous debate sessions in the archives. hosted on AWS.",
+			"Debate It is a live debating app. Made with AngularJS and TailwindCSS for the frontend, mySQL, express and some pyton for the backend. it utilizes socket.io for live chat and peers for the video call. users can create and join rooms as debaters, watch live debates that are currently in progress and chat with other people. users can also watch previous debate sessions in the archives.",
 		tags: ["AngularJS", "TailwindCSS", "Full Stack", "mySQL"],
 		app_url: "http://www.debateit.app",
 		repository_url: "",
 		image: DebateItImage,
+		hosting: {
+			frontend: "AWS",
+			backend: "AWS",
+		},
 	},
 	// {
 	// 	id: 5,

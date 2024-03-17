@@ -35,7 +35,7 @@ function Hero() {
 
 	return (
 		<AnimatePresence>
-			<div className="flex items-center justify-center w-full h-screen bg-light">
+			<div className="flex items-center justify-center w-full h-screen bg-light overflow-hidden">
 				<div className="z-[2] flex flex-col whitespace-nowrap">
 					<div className="z-[2] flex flex-col items-center justify-between whitespace-nowrap">
 						<motion.span
@@ -49,7 +49,7 @@ function Hero() {
 							}}
 							transition={{ duration: 1, ease: [0.85, 0, 0.15, 1] }}
 							id="hi"
-							className="md:text-9xl opacity-0 font-bold text-2xl z-[2] text-dark"
+							className="md:text-9xl  opacity-0 font-bold text-6xl z-[2] text-dark"
 							style={{
 								x: heyXPosition,
 								opacity: opacity,
@@ -76,7 +76,7 @@ function Hero() {
 								x: idoXPosition,
 								opacity: opacity,
 							}}
-							className="md:text-9xl font-bold flex text-2xl z-[2]  text-dark"
+							className="md:text-9xl font-bold flex text-6xl z-[2]  text-dark"
 						>
 							<span>I AM &nbsp;</span>
 							<span className="text-accent">IDO</span>

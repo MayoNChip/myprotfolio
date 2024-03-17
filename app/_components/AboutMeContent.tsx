@@ -80,9 +80,9 @@ function AboutMeContent() {
 	const secondParagraphWordSpace = 1 / secondParagraphWordsCount;
 
 	return (
-		<div className="relative flex flex-col self-center w-full px-40 my-12 text-2xl h-fit font-extralight">
+		<div className="relative flex flex-col self-center w-full p-6 text-xl md:text-2xl md:my-12 md:px-40 h-fit font-extralight">
 			<div className="flex flex-col h-full" ref={parentRef}>
-				<div className="relative w-1/2" ref={firstParagraphRef}>
+				<div className="relative md:w-1/2" ref={firstParagraphRef}>
 					{/* <motion.h1
 						style={{
 							y: firstTitleParallex,
@@ -92,7 +92,7 @@ function AboutMeContent() {
 					>
 						WHO AM I?
 					</motion.h1> */}
-					<div className="flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline">
+					<div className="flex flex-wrap leading-[2rem] gap-1 justify-stretch items-baseline">
 						{firstParagraphWords.map((word, index) => {
 							const start = index / firstParagraphWordsCount;
 							const end = start + firstParagraphWordSpace;
@@ -116,11 +116,12 @@ function AboutMeContent() {
 							);
 						})}
 					</div>
-					<p className="absolute flex flex-wrap top-0 self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch  items-baseline">
+					<p className="absolute flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline bottom-0 text-light/40">
+						{/* semi transparent first paragraph words */}
 						{firstParagraphWords.map((word, index) => {
 							if (index === 0) {
 								return (
-									<span key={index} className="text-5xl font-bold">
+									<span key={index} className="text-2xl font-bold md:text-5xl">
 										{word}
 									</span>
 								);
@@ -130,15 +131,14 @@ function AboutMeContent() {
 					</p>
 				</div>
 				<div
-					className="relative self-end w-1/2 h-full mt-40"
+					className="relative self-end h-full mt-40 md:w-1/2"
 					ref={secondParagraphRef}
 				>
 					<motion.h1
 						style={{
 							y: secondTitleParallex,
 						}}
-						// whileInView={{ opacity: [0, 1], y: [100, 0] }}
-						className="absolute font-semibold text-8xl -top-[10%] -left-[15%] text-accent/30 "
+						className="absolute font-semibold text-8xl md:-top-[10%] md:-left-[15%] text-accent/30 "
 					>
 						WHY ME?
 					</motion.h1>
@@ -156,6 +156,7 @@ function AboutMeContent() {
 										key={index}
 										range={range}
 										progress={secondParagraphScrollYProgress.scrollYProgress}
+										larger
 									>
 										{word}
 									</Word>
@@ -171,15 +172,20 @@ function AboutMeContent() {
 								</Word>
 							);
 						})}
-						<p className="absolute flex flex-wrap top-0 self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch  items-baseline">
+						<p className="absolute flex flex-wrap top-0 self-center w-full gap-1 text-light/40 leading-[2rem] justify-stretch items-baseline">
+							{/* semi transparent second paragraph words */}
+
 							{secondParagraphWords.map((word, index) => {
-								// if (index === 0) {
-								// 	return (
-								// 		<span key={index} className="text-5xl font-bold">
-								// 			{word}
-								// 		</span>
-								// 	);
-								// }
+								if (index === 0) {
+									return (
+										<span
+											key={index}
+											className="text-2xl font-bold md:text-5xl"
+										>
+											{word}
+										</span>
+									);
+								}
 								return <span key={index}>{word}</span>;
 							})}
 						</p>
@@ -215,20 +221,20 @@ const Word = ({
 		} else {
 			controls.start("hidden");
 		}
-	}, [isInView]);
+	}, [isInView, controls]);
 
 	return (
 		<div ref={ref} className="relative overflow-hidden">
 			<motion.span
-				className={cn("text-light", larger && "text-5xl  font-bold")}
+				className={cn("text-light", larger && "md:text-5xl text-2xl font-bold")}
 				style={{ opacity }}
 			>
 				{children}
 			</motion.span>
-			<motion.span
+			{/* <motion.span
 				transition={{ duration: 0.5 }}
 				className="absolute z-20 w-full h-full bg-accent"
-			/>
+			/> */}
 		</div>
 	);
 };
