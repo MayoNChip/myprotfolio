@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { ErrorResponse, Resend } from "resend";
-import { EmailTemplate } from "../app/emails/Email";
+import { Email } from "../app/emails/Email";
 import { FormSchema } from "../lib/ContactMeFormSchema";
 
 type FormDataType = z.infer<typeof FormSchema>;
@@ -20,7 +20,7 @@ export async function sendEmail(formData: FormDataType) {
         from: "newworklead@idocodev.com",
         to: "idocodev@gmail.com",
         subject: "New Job Lead",
-        react: EmailTemplate(result.data),
+        react: Email(result.data),
         text: "hello",
       });
 
