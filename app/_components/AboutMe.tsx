@@ -42,7 +42,7 @@ function AboutMe() {
     };
 
     enterAnimations();
-  }, [refs[2], isInView, animate, scope]);
+  }, [refs[2], isInView, animate]);
 
   return (
     <motion.div

@@ -100,7 +100,7 @@ function EmailSent({ error }: { error?: string }) {
           <SocialMediaBar />
         </div>
       ) : (
-        <>
+        <div className="flex flex-col items-center">
           <div className="relative z-10 flex justify-center">
             <svg width={250} height={250} viewBox="0 0 250 250">
               <motion.circle
@@ -128,7 +128,7 @@ function EmailSent({ error }: { error?: string }) {
             initial={{ opacity: 0, y: -100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="text-8xl text-accent z-[5]"
+            className="md:text-8xl text-7xl text-accent z-[5]"
           >
             Thank you!
           </motion.h1>
@@ -140,7 +140,7 @@ function EmailSent({ error }: { error?: string }) {
           >
             We&apos;ll be in touch
           </motion.h1>
-        </>
+        </div>
       )}
     </div>
   );
