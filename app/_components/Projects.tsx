@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Project, projects } from "../../lib/projects";
+import React, { useRef } from "react";
+import { projects } from "../../lib/projects";
 import ProjectCard from "./ProjectCard";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-//TODO: style projects title
 
 function Projects() {
   const ref = useRef(null);
@@ -24,7 +22,6 @@ function Projects() {
       <motion.h1
         className="absolute self-start font-semibold -top-48 text-accent/30 text-9xl md:-top-16 left-16 "
         style={{ y: titleParallex }}
-        // whileInView={{ opacity: [0, 1], x: [-100, 0] }}
         transition={{ duration: 1.4, type: "spring" }}
       >
         My Work

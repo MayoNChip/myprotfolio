@@ -1,9 +1,8 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
-import useScreenSize from "../../hooks/useScreenSize";
 import AboutMe from "./AboutMe";
 import Carousel from "./Carusale";
 import ContactMeForm from "./ContactMe";
@@ -12,42 +11,9 @@ import Hero from "./Hero";
 import Projects from "./Projects";
 
 export default function Home() {
-  const { refs, setRefs } = useContext(GlobalContext) as InitialContext;
+  const { refs } = useContext(GlobalContext) as InitialContext;
   const { scrollY } = useScroll();
   const scrolled = useTransform(scrollY, [0, 200], [1, 0]);
-
-  // useEffect(() => {
-  // 	if (isInView) {
-  // 		animate("#name", {
-  // 			y: [100, 0],
-  // 			transition: {
-  // 				duration: 4,
-  // 				ease: [0.6, 0.01, -0.05, 0.9],
-  // 			},
-  // 		});
-  // 	}
-  // }, [isInView]);
-
-  useEffect(() => {
-    setRefs([
-      {
-        id: 1,
-        ref: refs[0].ref,
-      },
-      {
-        id: 2,
-        ref: refs[1].ref,
-      },
-      {
-        id: 3,
-        ref: refs[2].ref,
-      },
-      {
-        id: 4,
-        ref: refs[3].ref,
-      },
-    ]);
-  }, [refs]);
 
   return (
     <div className="relative flex flex-col w-full h-screen bg-dark">

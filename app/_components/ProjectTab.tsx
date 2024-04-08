@@ -10,7 +10,7 @@ import Link from "next/link";
 
 type Props = {
   openedTabs: number[];
-  setOpenedTabs: (openedTabs: number[]) => void;
+  setOpenedTabs: React.Dispatch<React.SetStateAction<number[]>>;
   project: Project;
   projectTags: { name: string; logo?: any }[];
 };
@@ -21,18 +21,18 @@ function ProjectTab({
   project,
   projectTags,
 }: Props) {
-  const toggleTab = (projectId: number) => {
-    if (openedTabs.includes(projectId)) {
-      const filteredTabs = openedTabs.filter((id) => id !== projectId);
-      setOpenedTabs(filteredTabs);
-    } else {
-      openedTabs.push(projectId);
-      const newOpenedTabs = [...openedTabs];
-      setOpenedTabs(newOpenedTabs);
-    }
-  };
   const { darkMode } = useContext(GlobalContext) as InitialContext;
-  console.log(openedTabs);
+
+  const toggleTab = (projectId: number) => {
+    setOpenedTabs((currentTabs) => {
+      if (currentTabs.includes(projectId)) {
+        return currentTabs.filter((id) => id !== projectId);
+      } else {
+        return [...currentTabs, projectId];
+      }
+    });
+  };
+
   return (
     <>
       <div
@@ -46,9 +46,6 @@ function ProjectTab({
             alt={project.title}
           />
         </div>
-        {/* <div className="w-full bg-dark/60 rounded ">
-          <h1>{project.title}</h1>
-        </div> */}
         <div className="w-full flex p-4 bg-accent/70 rounded-b text-white">
           <h1
             className={cn(

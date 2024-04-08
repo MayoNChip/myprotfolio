@@ -62,61 +62,6 @@ function ContactMeForm() {
     }
   };
   const { darkMode } = useContext(GlobalContext) as InitialContext;
-  //   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     setData((data) => {
-  //       return { ...data, email: e.target.value };
-  //     });
-  //   };
-
-  //   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     setData((data) => {
-  //       return { ...data, name: e.target.value };
-  //     });
-  //   };
-  //   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     setData((data) => {
-  //       return { ...data, phone: e.target.value };
-  //     });
-  //   };
-
-  //   const validateField = (
-  //     event:
-  //       | KeyboardEvent<HTMLInputElement>
-  //       | FocusEvent<HTMLInputElement, Element>,
-  //     id: string
-  //   ) => {
-  //     const result = FormSchema.safeParse({
-  //       email: data.email,
-  //       name: data.name,
-  //       phone: data.phone,
-  //     });
-  //     if (!result.success) {
-  //       const formatResults = result.error.format();
-  //       switch (id) {
-  //         case "name": {
-  //           setFormErrors({
-  //             ...formErrors,
-  //             name: formatResults.name?._errors[0],
-  //           });
-  //           break;
-  //         }
-  //         case "email": {
-  //           setFormErrors({
-  //             ...formErrors,
-  //             email: formatResults.email?._errors[0],
-  //           });
-  //           break;
-  //         }
-  //         case "phone": {
-  //           setFormErrors({
-  //             ...formErrors,
-  //             phone: formatResults.phone?._errors[0],
-  //           });
-  //           break;
-  //         }
-  //       }
-  //     }
-  //   };
 
   return (
     <div
@@ -283,10 +228,6 @@ function ContactMeForm() {
             </div>
           </div>
         )}
-
-        {/* {!state.success ? (
-					
-				) : null} */}
       </AnimatePresence>
     </div>
   );

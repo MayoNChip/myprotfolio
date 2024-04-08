@@ -3,13 +3,11 @@
 import React, { useEffect } from "react";
 import { motion, useAnimate, useAnimation, Variants } from "framer-motion";
 import CheckIcon from "./CheckIcon";
-import { ErrorResponse } from "resend";
-import { PiSmileyBlankLight, PiSmileyNervous } from "react-icons/pi";
+import { PiSmileyNervous } from "react-icons/pi";
 import SocialMediaBar from "./SocialMediaBar";
 
 function EmailSent({ error }: { error?: string }) {
   const circleControls = useAnimation();
-  const circleBackgroundControls = useAnimation();
   const [scope, animate] = useAnimate();
 
   const circlePathVariation: Variants = {

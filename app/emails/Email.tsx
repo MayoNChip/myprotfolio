@@ -2,7 +2,6 @@ import {
   Body,
   Container,
   Heading,
-  Html,
   Section,
   Tailwind,
   Text,
@@ -47,21 +46,3 @@ export const Email: React.FC<Readonly<Props>> = ({
     </Body>
   </Tailwind>
 );
-
-// import * as React from "react";
-
-// interface EmailTemplateProps {
-//   firstName: string;
-// }
-
-// export const EmailTemplate: React.FC<Readonly<Props>> = ({
-//   email,
-//   name,
-//   phone,
-// }) => (
-//   <div>
-//     <h1>
-//       Welcome, {name} , {email}!
-//     </h1>
-//   </div>
-// );
