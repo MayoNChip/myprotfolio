@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useContext,
-  useState,
-  useRef,
-  KeyboardEvent,
-  FocusEvent,
-} from "react";
+import React, { useContext, useState } from "react";
 import { z } from "zod";
 import { FaLinkedin } from "react-icons/fa";
 import { IoGlassesOutline, IoLogoWhatsapp } from "react-icons/io5";
@@ -14,14 +8,13 @@ import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import { cn } from "../../lib/utils";
 import { sendEmail } from "../../actions/sendEmail";
 import { motion, AnimatePresence } from "framer-motion";
-import { useFormState } from "react-dom";
 import { BiMailSend } from "react-icons/bi";
 import Link from "next/link";
 import EmailSent from "./EmailSent";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormSchema } from "../../lib/ContactMeFormSchema";
-import { ErrorResponse } from "resend";
+import { FaGithub } from "react-icons/fa";
 
 type FormInputs = z.infer<typeof FormSchema>;
 
@@ -205,10 +198,6 @@ function ContactMeForm() {
               </form>
             </div>
             <div className="absolute flex items-center self-center justify-around w-full md:w-1/4 gap-4 py-1 rounded-full bottom-8 bg-dark ">
-              <IoGlassesOutline
-                id="icon"
-                className="absolute z-10 w-8 h-8 text-light"
-              />
               <Link
                 href="https://api.whatsapp.com/send/?phone=972545649413&text&type=phone_number&app_absent=0"
                 target="_blank"
@@ -218,6 +207,9 @@ function ContactMeForm() {
                   opacity={0.7}
                   className="w-7 h-7"
                 />
+              </Link>
+              <Link href="https://www.github.com/mayonchip" target="_blank">
+                <FaGithub id="icon" className="w-6 h-6 text-light" />
               </Link>
               <Link
                 href="https://www.linkedin.com/in/idocohendev/"
