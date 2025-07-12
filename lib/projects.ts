@@ -120,13 +120,15 @@ export const projects: Project[] = [
     elementId: "hebrew-ai",
     description:
       "Hebrew AI is a specialized AI transcription platform for Hebrew and English audio files. Built with Next.js and advanced language processing, it offers accurate transcription, sentiment analysis, content summarization, and translation capabilities. The platform uses custom 'ivrit.ai' language models to handle Israeli slang, dialects, and professional terminology with high accuracy.",
-    responsibilities: "Led frontend development of the transcription interface, implemented user authentication and file upload systems, optimized performance for large audio file processing, and integrated AI transcription APIs with real-time progress tracking.",
+    responsibilities:
+      "Led frontend development of the transcription interface, implemented user authentication and file upload systems, optimized performance for large audio file processing, and integrated AI transcription APIs with real-time progress tracking.",
     tags: ["Next", "React", "TailwindCSS", "Frontend", "Typescript"],
     app_url: "https://www.hebrew-ai.com",
     repository_url: "",
     image: hebrewAiImage,
     hosting: {
-      frontend: "Vercel",
+      frontend: "AWS",
+      backend: "AWS",
     },
   },
   {
@@ -135,7 +137,8 @@ export const projects: Project[] = [
     elementId: "vistapoint",
     description:
       "VistaPoint is a heritage tourism platform featuring physical points of interest across Israel. Visitors can discover historical sites, memorials, and landmarks by scanning QR codes on-location to access rich historical content and stories about each site's significance.",
-    responsibilities: "Implemented AI-powered translation features, developed new UI components and designs, performed comprehensive bug fixes, and built a separate lead scraping application for business development (currently in development).",
+    responsibilities:
+      "Implemented AI-powered translation features, developed new UI components and designs, performed comprehensive bug fixes, and built a separate lead scraping application for business development (currently in development).",
     tags: ["AngularJS", "NestJS", "Full Stack", "Typescript"],
     app_url: "https://israelpoi.com/",
     repository_url: "",
@@ -151,7 +154,8 @@ export const projects: Project[] = [
     title: "guru - Grocery shop",
     description:
       "guru is a grocery shop full stack project, it was a group project as part of my bootcamp at ITC israel. I worked on the frontend side of the project.",
-    responsibilities: "Developed the complete frontend interface using React and ChakraUI, implemented responsive design patterns, created reusable component library, and integrated with backend APIs for product management and shopping cart functionality.",
+    responsibilities:
+      "Developed the complete frontend interface using React and ChakraUI, implemented responsive design patterns, created reusable component library, and integrated with backend APIs for product management and shopping cart functionality.",
     tags: ["React", "ChakraUI", "Frontend", "Javascript"],
     repository_url: "https://github.com/MayoNChip/group-project-frontend",
     image: guruImage,
@@ -162,7 +166,8 @@ export const projects: Project[] = [
     elementId: "do",
     description:
       "A to do app that was made to learn and practice angular. It was made with angular and tailwindcss and took advantage of the jsonplaceholder api to allow users to login and manage todos. below is an email to login for testing (password does not matter, any 6 characters or more will do). hosted on Vercel.",
-    responsibilities: "Built the complete Angular application from scratch, implemented authentication flow with JSONPlaceholder API, designed responsive UI with TailwindCSS, and deployed the application with proper hosting configuration.",
+    responsibilities:
+      "Built the complete Angular application from scratch, implemented authentication flow with JSONPlaceholder API, designed responsive UI with TailwindCSS, and deployed the application with proper hosting configuration.",
     tags: ["AngularJS", "TailwindCSS", "Frontend", "Typescript"],
     example_user: "Telly.Hoeger@billy.biz",
     repository_url: "https://github.com/MayoNChip/angular-todoapp",
@@ -178,7 +183,8 @@ export const projects: Project[] = [
     elementId: "pet",
     description:
       "BestPals is a pet adoption app. Made with React and ChakraUI for the frontend, mongoDB, express and cloudinary for the backend. originally it was coded in javascript and later migrated to typescript. users can foster or adopt pets. The administrator can add and edit pets and see the admin dashboard. You are welcome to register and try it out.",
-    responsibilities: "Developed full-stack application including React frontend with ChakraUI, Express.js backend with MongoDB, integrated Cloudinary for image management, implemented user authentication and admin dashboard, and migrated entire codebase from JavaScript to TypeScript.",
+    responsibilities:
+      "Developed full-stack application including React frontend with ChakraUI, Express.js backend with MongoDB, integrated Cloudinary for image management, implemented user authentication and admin dashboard, and migrated entire codebase from JavaScript to TypeScript.",
     tags: ["React", "Full Stack", "ChakraUI", "MongoDB", "Express"],
     app_url: "https://full-stack-pet-adoption-mayo-n-chip.vercel.app/",
     repository_url:
@@ -195,7 +201,8 @@ export const projects: Project[] = [
     elementId: "debate",
     description:
       "Debate It is a live debating app. Made with AngularJS and TailwindCSS for the frontend, mySQL, express and some pyton for the backend. it utilizes socket.io for live chat and peers for the video call. users can create and join rooms as debaters, watch live debates that are currently in progress and chat with other people. users can also watch previous debate sessions in the archives.",
-    responsibilities: "Built full-stack live debating platform with Angular frontend, implemented real-time communication using Socket.io, integrated video calling with WebRTC/Peers, developed MySQL database architecture with Express.js backend, and created archive system for previous debates.",
+    responsibilities:
+      "Built full-stack live debating platform with Angular frontend, implemented real-time communication using Socket.io, integrated video calling with WebRTC/Peers, developed MySQL database architecture with Express.js backend, and created archive system for previous debates.",
     tags: ["AngularJS", "TailwindCSS", "Full Stack", "mySQL"],
     app_url: "http://www.debateit.app",
     repository_url: "",
