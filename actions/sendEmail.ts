@@ -19,7 +19,7 @@ export async function sendEmail(formData: FormDataType) {
         from: "newworklead@idocodev.com",
         to: "idocodev@gmail.com",
         subject: "New Job Lead",
-        react: Email(result.data),
+        react: await Email(result.data),
         text: "hello",
       });
 

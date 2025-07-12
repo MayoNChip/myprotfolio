@@ -1,5 +1,8 @@
 "use client";
 
+// BACKUP: This is the old projects component - kept as backup
+// Current implementation is in ProjectsNew.tsx
+
 import React, { useRef } from "react";
 import { projects } from "../../lib/projects";
 import ProjectCard from "./ProjectCard";

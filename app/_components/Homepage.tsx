@@ -9,6 +9,7 @@ import ContactMeForm from "./ContactMe";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Projects from "./Projects";
+import ProjectsNew from "./ProjectsNew";
 
 export default function Home() {
   const { refs } = useContext(GlobalContext) as InitialContext;
@@ -27,7 +28,7 @@ export default function Home() {
         <Carousel />
       </div>
       <div ref={refs[2].ref}>
-        <Projects />
+        <ProjectsNew />
       </div>
       <div ref={refs[3].ref}>
         <ContactMeForm />

@@ -8,7 +8,7 @@ import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import { cn } from "../../lib/utils";
 import { sendEmail } from "../../actions/sendEmail";
 import { motion, AnimatePresence } from "framer-motion";
-import { BiMailSend } from "react-icons/bi";
+import { IoSend } from "react-icons/io5";
 import Link from "next/link";
 import EmailSent from "./EmailSent";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -191,32 +191,11 @@ function ContactMeForm() {
                   }}
                   disabled={!isValid}
                   type="submit"
-                  className="self-end pr-4 my-4 rounded-full text-accent first-letter:text-sm font-extralight disabled:text-gray-500 h-fit"
+                  className="self-end p-3 my-4 rounded-full bg-accent text-light font-medium disabled:bg-gray-500 disabled:text-gray-300 transition-colors duration-300 flex items-center justify-center hover:bg-accent/90"
                 >
-                  <BiMailSend className="w-5 h-5" />
+                  <IoSend className="w-5 h-5" />
                 </motion.button>
               </form>
-            </div>
-            <div className="absolute flex items-center self-center justify-around w-full md:w-1/4 gap-4 py-1 rounded-full bottom-8 bg-dark ">
-              <Link
-                href="https://api.whatsapp.com/send/?phone=972545649413&text&type=phone_number&app_absent=0"
-                target="_blank"
-              >
-                <IoLogoWhatsapp
-                  fill="#25D366"
-                  opacity={0.7}
-                  className="w-7 h-7"
-                />
-              </Link>
-              <Link href="https://www.github.com/mayonchip" target="_blank">
-                <FaGithub id="icon" className="w-6 h-6 text-light" />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/idocohendev/"
-                target="_blank"
-              >
-                <FaLinkedin fill="#0072AD" opacity={0.7} className="w-7 h-7" />
-              </Link>
             </div>
           </div>
         )}

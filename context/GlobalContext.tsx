@@ -19,7 +19,7 @@ export type InitialContext = {
   setDarkMode: Dispatch<SetStateAction<boolean>>;
   inViewComponentId: number;
   setInViewComponentId: Dispatch<SetStateAction<number>>;
-  refs: { id: number; ref: RefObject<HTMLDivElement> }[];
+  refs: { id: number; ref: RefObject<HTMLDivElement | null> }[];
   setRefs: Dispatch<SetStateAction<{ id: number; ref: any }[]>>;
   isHeroInView: boolean;
   isAboutMeInView: boolean;

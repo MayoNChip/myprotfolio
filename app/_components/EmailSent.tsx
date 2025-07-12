@@ -117,7 +117,7 @@ function EmailSent({ error }: { error?: string }) {
             <motion.div
               initial={{ y: 0 }}
               id="circleBG"
-              className="absolute flex items-center self-center justify-center p-4 scale-0 bg-green-500 rounded-full shadow-lg opacity-0 w-44 h-44 shadow-green-600/40"
+              className="absolute flex items-center self-center justify-center p-4 scale-0 bg-green-500 rounded-full shadow-lg w-44 h-44 shadow-green-600/40"
             >
               <CheckIcon />
             </motion.div>

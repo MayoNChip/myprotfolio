@@ -46,7 +46,7 @@ function Hero() {
               }}
               transition={{ duration: 1, ease: [0.85, 0, 0.15, 1] }}
               id="hi"
-              className="md:text-9xl  opacity-0 font-bold text-6xl z-[2] text-dark"
+              className="md:text-9xl font-bold text-6xl z-[2] text-dark"
               style={{
                 x: heyXPosition,
                 opacity: opacity,

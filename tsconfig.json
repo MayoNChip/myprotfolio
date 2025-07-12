@@ -19,8 +19,11 @@
 				"name": "next"
 			}
 		],
-		"types": ["react-dom/experimental"],
-		"downlevelIteration": true
+		"downlevelIteration": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./*"]
+		}
 	},
 	"include": [
 		"next-env.d.ts",

@@ -19,6 +19,9 @@ function AboutMeImage() {
   const { width } = useScreenSize();
 
   useEffect(() => {
+    // Set initial state immediately to prevent blank content
+    animate(scope.current, { opacity: 1 }, { duration: 0 });
+    
     if (isInView) {
       animate(
         scope.current,
@@ -32,7 +35,7 @@ function AboutMeImage() {
         }
       );
     }
-  }, [isInView]);
+  }, [isInView, animate, scope]);
 
   const pulseVariants = {
     visable: {
@@ -117,7 +120,7 @@ function AboutMeImage() {
 
       <motion.div
         ref={scope}
-        className="flex flex-col p-4 pl-14 md:opacity-0 md:text-6xl md:w-fit w-full text-light top-[0px]"
+        className="flex flex-col p-4 pl-14 md:text-6xl md:w-fit w-full text-light top-[0px]"
       >
         <motion.div className="flex gap-2 font-extralight">
           <h1>&quot;Programming isn&apos;t about what you</h1>

@@ -3,6 +3,7 @@ import React from "react";
 import ThemeProvider from "../context/GlobalContext";
 import "../styles/globals.css";
 import { Navbar } from "./_components/Navbar";
+import FloatingSocialBar from "./_components/FloatingSocialBar";
 import { Josefin_Sans } from "next/font/google";
 
 const josefinSans = Josefin_Sans({
@@ -21,6 +22,7 @@ function layout({ children }: Props) {
       <body className="relative flex flex-col items-center w-screen h-screen overflow-x-hidden font-josefin scroll-smooth bg-dark ">
         <ThemeProvider>
           <Navbar />
+          <FloatingSocialBar />
           {children}
         </ThemeProvider>
       </body>

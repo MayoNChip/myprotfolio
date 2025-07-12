@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect, useRef } from "react";
-import { useAnimate, useInView, usePresence, motion } from "framer-motion";
+import { useAnimate, useInView, usePresence } from "framer-motion";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import AboutMeHero from "./AboutMeHero";
 import AboutMeContent from "./AboutMeContent";
@@ -45,13 +45,13 @@ function AboutMe() {
   }, [refs[2], isInView, animate]);
 
   return (
-    <motion.div
+    <div
       ref={parentRef}
       className="relative flex flex-col w-full h-full "
     >
       <AboutMeHero />
       <AboutMeContent />
-    </motion.div>
+    </div>
   );
 }
 

@@ -14,21 +14,21 @@ import React, { ReactNode, useEffect, useRef } from "react";
 import { cn } from "../../lib/utils";
 
 function AboutMeContent() {
-	const parentRef = useRef(null);
-	const firstParagraphRef = useRef(null);
-	const secondParagraphRef = useRef(null);
+	const parentRef = useRef<HTMLDivElement>(null);
+	const firstParagraphRef = useRef<HTMLDivElement>(null);
+	const secondParagraphRef = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
-		target: firstParagraphRef,
+		target: firstParagraphRef as React.RefObject<HTMLElement>,
 		offset: ["start 0.7", "end 0.6"],
 	});
 
 	const secondParagraphScrollYProgress = useScroll({
-		target: secondParagraphRef,
+		target: secondParagraphRef as React.RefObject<HTMLElement>,
 		offset: ["start 0.7", "end 0.5"],
 	});
 
 	const parentRefScrollYProgress = useScroll({
-		target: parentRef,
+		target: parentRef as React.RefObject<HTMLElement>,
 		offset: ["start 0.7", "end 0.5"],
 	});
 
@@ -134,14 +134,14 @@ function AboutMeContent() {
 					className="relative self-end h-full mt-40 md:w-1/2"
 					ref={secondParagraphRef}
 				>
-					<motion.h1
+					<motion.div
 						style={{
 							y: secondTitleParallex,
 						}}
-						className="absolute font-semibold text-8xl md:-top-[10%] md:-left-[15%] text-accent/30 "
+						className="absolute font-semibold text-8xl md:-top-[10%] md:-left-[15%] text-accent/30"
 					>
-						WHY ME?
-					</motion.h1>
+						<h1>WHY ME?</h1>
+					</motion.div>
 					<div
 						className="flex flex-wrap gap-1 leading-[2rem] justify-stretch items-baseline"
 						ref={secondParagraphRef}
@@ -216,6 +216,9 @@ const Word = ({
 	const isInView = useInView(ref);
 
 	useEffect(() => {
+		// Always start visible as fallback
+		controls.start("visible");
+		
 		if (isInView) {
 			controls.start("visible");
 		} else {
@@ -225,12 +228,14 @@ const Word = ({
 
 	return (
 		<div ref={ref} className="relative overflow-hidden">
-			<motion.span
+			<motion.div
 				className={cn("text-light", larger && "md:text-5xl text-2xl font-bold")}
 				style={{ opacity }}
+				initial={{ opacity: 1 }}
+				animate={{ opacity: 1 }}
 			>
-				{children}
-			</motion.span>
+				<span>{children}</span>
+			</motion.div>
 			{/* <motion.span
 				transition={{ duration: 0.5 }}
 				className="absolute z-20 w-full h-full bg-accent"
