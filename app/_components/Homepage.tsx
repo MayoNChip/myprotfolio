@@ -1,38 +1,52 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { GlobalContext, InitialContext } from "../../context/GlobalContext";
+import { GlobalContext, GlobalContextType } from "../../context/GlobalContext";
+import { useSectionRefs } from "../../hooks/useSectionRefs";
 import AboutMe from "./AboutMe";
 import Carousel from "./Carusale";
 import ContactMeForm from "./ContactMe";
 import Footer from "./Footer";
 import Hero from "./Hero";
-import Projects from "./Projects";
 import ProjectsNew from "./ProjectsNew";
+import { SectionWrapper } from "./SectionWrapper";
 
 export default function Home() {
-  const { refs } = useContext(GlobalContext) as InitialContext;
+  const { sections, activeSection } = useSectionRefs();
+  const { setActiveSection } = useContext(GlobalContext) as GlobalContextType;
   const { scrollY } = useScroll();
   const scrolled = useTransform(scrollY, [0, 200], [1, 0]);
+
+  // Sync active section with global context
+  useEffect(() => {
+    setActiveSection(activeSection);
+  }, [activeSection, setActiveSection]);
 
   return (
     <div className="relative flex flex-col w-full h-screen bg-dark">
       <div className="flex items-center self-center justify-center w-1/2 h-full text-white"></div>
-      <div ref={refs[0].ref}>
-        <Hero />
-      </div>
-      <div className="flex flex-col" ref={refs[1].ref}>
-        <AboutMe />
 
+      <SectionWrapper sectionId="hero" sectionRef={sections.hero.ref}>
+        <Hero />
+      </SectionWrapper>
+
+      <SectionWrapper
+        sectionId="about"
+        sectionRef={sections.about.ref}
+        className="flex flex-col"
+      >
+        <AboutMe />
         <Carousel />
-      </div>
-      <div ref={refs[2].ref}>
+      </SectionWrapper>
+
+      <SectionWrapper sectionId="projects" sectionRef={sections.projects.ref}>
         <ProjectsNew />
-      </div>
-      <div ref={refs[3].ref}>
+      </SectionWrapper>
+
+      <SectionWrapper sectionId="contact" sectionRef={sections.contact.ref}>
         <ContactMeForm />
-      </div>
+      </SectionWrapper>
 
       <div className="h-screen">
         <Footer />

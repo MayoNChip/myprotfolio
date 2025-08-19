@@ -1,104 +1,22 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext, InitialContext } from "../context/GlobalContext";
-
-const defaultRoutes = [
-  {
-    id: 1,
-    title: "Home",
-    idName: "home",
-    path: "/",
-  },
-  {
-    id: 2,
-    title: "About Me",
-    idName: "aboutme",
-    path: "/aboutme",
-  },
-  {
-    id: 3,
-    title: "Projects",
-    idName: "projects",
-    path: "/projects",
-  },
-  {
-    id: 4,
-    title: "Contact",
-    idName: "contactme",
-    path: "/contactme",
-  },
-];
-
-type Route = (typeof defaultRoutes)[0];
+import { GlobalContext, GlobalContextType } from "../context/GlobalContext";
+import { useSectionRefs } from "./useSectionRefs";
 
 function useNav() {
-  const {
-    setInViewComponentId,
-    refs,
-    isHeroInView,
-    isAboutMeInView,
-    isProjectsInView,
-    isContactMeInView,
-  } = useContext(GlobalContext) as InitialContext;
+  const { activeSection } = useContext(GlobalContext) as GlobalContextType;
+  const { sections, scrollToSection } = useSectionRefs();
   const [navbarVisable, setNavbarVisable] = useState(true);
   const [lastYPos, setLastYPos] = useState(0);
   const [routeByClick, setRouteByClick] = useState(false);
 
-  const [routes, setRoutes] = useState([
-    {
-      id: 1,
-      ref: refs[0].ref,
-      isInView: isHeroInView,
-      title: "Home",
-    },
-    {
-      id: 2,
-      ref: refs[1].ref,
-      isInView: isAboutMeInView,
-      title: "About Me",
-    },
-    {
-      id: 3,
-      ref: refs[2].ref,
-      isInView: isProjectsInView,
-      title: "Projects",
-    },
-    {
-      id: 4,
-      ref: refs[3].ref,
-      isInView: isContactMeInView,
-      title: "Contact",
-    },
-  ]);
-
-  const [activeRoute, setActiveRoute] = useState<Route>(defaultRoutes[0]);
-
-  useEffect(() => {
-    const inViewComponents = [
-      {
-        id: 1,
-        isInView: isHeroInView,
-      },
-      {
-        id: 2,
-        isInView: isAboutMeInView,
-      },
-      {
-        id: 3,
-        isInView: isProjectsInView,
-      },
-      {
-        id: 4,
-        isInView: isContactMeInView,
-      },
-    ];
-
-    inViewComponents.map((route) => {
-      if (route.isInView) {
-        setInViewComponentId(route.id);
-      }
-    });
-  }, [isAboutMeInView, isContactMeInView, isHeroInView, isProjectsInView]);
+  // Convert sections to routes format for navbar
+  const routes = Object.values(sections).map((section, index) => ({
+    id: index + 1,
+    sectionId: section.id,
+    title: section.label,
+    isInView: section.isInView,
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,24 +39,28 @@ function useNav() {
     };
   }, [lastYPos, routeByClick]);
 
-  const handleRouteClick = (routeId: number) => {
+  const handleRouteClick = (sectionId: string) => {
     setRouteByClick(true);
-    refs.map((element) => {
-      if (element.id === routeId) {
-        setInViewComponentId(routeId);
-        element.ref.current?.scrollIntoView({
-          behavior: "auto",
-        });
-      }
-    });
+    scrollToSection(sectionId);
+  };
+
+  // Map activeSection to numeric ID for backward compatibility
+  const getInViewComponentId = () => {
+    const sectionMap: { [key: string]: number } = {
+      hero: 1,
+      about: 2,
+      projects: 3,
+      contact: 4,
+    };
+    return sectionMap[activeSection] || 1;
   };
 
   return {
     routes,
-    activeRoute,
-    setActiveRoute,
+    activeSection,
     navbarVisable,
     handleRouteClick,
+    inViewComponentId: getInViewComponentId(),
   };
 }
 

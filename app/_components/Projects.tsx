@@ -30,11 +30,13 @@ function Projects() {
         My Work
       </motion.h1>
       <div className="grid justify-around w-full h-full grid-rows-1 gap-4 p-4 my-10 md:overflow-hidden md:p-10 md:flex md:flex-row">
-        {projects?.map((project, index) => {
-          return (
-            <ProjectCard key={project.id} project={project} index={index} />
-          );
-        })}
+        {projects
+          ?.sort((a, b) => a.id - b.id)
+          .map((project, index) => {
+            return (
+              <ProjectCard key={project.id} project={project} index={index} />
+            );
+          })}
       </div>
     </div>
   );

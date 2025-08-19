@@ -17,6 +17,10 @@ import mongoDBLogo from "../public/mongodblogo.png";
 import framerMotionLogo from "../public/framermotion.svg";
 import bestPalsProject from "../public/bestpals.png";
 import hebrewAiImage from "../public/hebrew-ai-homescreen.png";
+import vistaPointImage from "../public/vistapoint.png";
+import pythonLogo from "../public/pythonlogo.png";
+import awsLogo from "../public/awslogo.png";
+import nestJsLogo from "../public/nestjslogo.png";
 
 export type Project = {
   id: number;
@@ -67,7 +71,15 @@ export const tags = [
   },
   {
     name: "NestJS",
-    logo: nodeJsLogo, // Using Node.js logo for NestJS since they're related
+    logo: nestJsLogo,
+  },
+  {
+    name: "python",
+    logo: pythonLogo,
+  },
+  {
+    name: "AWS",
+    logo: awsLogo,
   },
 
   {
@@ -142,14 +154,14 @@ export const projects: Project[] = [
     tags: ["AngularJS", "NestJS", "Full Stack", "Typescript"],
     app_url: "https://israelpoi.com/",
     repository_url: "",
-    image: hebrewAiImage, // Using placeholder image for now
+    image: vistaPointImage,
     hosting: {
       frontend: "AWS",
       backend: "AWS",
     },
   },
   {
-    id: 3,
+    id: 6,
     elementId: "guru",
     title: "guru - Grocery shop",
     description:
@@ -196,7 +208,7 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 6,
+    id: 3,
     title: "Debate It",
     elementId: "debate",
     description:
