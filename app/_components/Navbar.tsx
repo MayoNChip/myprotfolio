@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import {
   stagger,
   useAnimate,
@@ -8,16 +8,13 @@ import {
   usePresence,
 } from "framer-motion";
 import { IoGlassesOutline } from "react-icons/io5";
-import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import useNav from "../../hooks/useNav";
 import { cn } from "../../lib/utils";
 
 export function Navbar() {
   const [scope, animate] = useAnimate();
-  const { refs, inViewComponentId, setInViewComponentId } = useContext(
-    GlobalContext
-  ) as InitialContext;
-  const { routes, navbarVisable, handleRouteClick } = useNav();
+  const { routes, navbarVisable, handleRouteClick, inViewComponentId } =
+    useNav();
   const [isPresent, safeToRemove] = usePresence();
 
   useEffect(() => {
@@ -112,7 +109,7 @@ export function Navbar() {
                           : "text-light",
                         "w-full h-full z-10 transition-colors"
                       )}
-                      onClick={() => handleRouteClick(route.id)}
+                      onClick={() => handleRouteClick(route.sectionId)}
                     >
                       {route.title}
                     </button>

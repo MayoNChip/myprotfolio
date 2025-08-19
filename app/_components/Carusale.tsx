@@ -17,10 +17,10 @@ const Carousel = () => {
       <div
         className={cn(
           !darkMode ? "rounded-none w-full" : "rounded-none w-full",
-          "relative flex items-center justify-center mx-auto h-auto  py-4 my-4 overflow-hidden  shadow-accent/50 shadow-[0_0_20px_0]  bg-light/80"
+          "relative flex items-center justify-center mx-auto py-4 my-4 overflow-hidden  shadow-accent/50 shadow-[0_0_20px_0]  bg-light/80 "
         )}
       >
-        <div className="flex justify-around w-full space-x-4 animation-pause">
+        <div className="flex justify-around w-full space-x-12 animation-pause">
           <div className="relative flex items-center justify-around w-full h-full space-x-4 animate-marquee whitespace-nowrap">
             {logosArr &&
               logosArr
@@ -37,7 +37,7 @@ const Carousel = () => {
                   );
                 })}
           </div>
-          <div className="absolute flex items-center justify-around w-full space-x-4 animate-marquee2 whitespace-nowrap animation-pause">
+          <div className="absolute flex items-center justify-around w-full space-x-12 animate-marquee2 whitespace-nowrap animation-pause">
             {logosArr &&
               logosArr
                 .filter((logo) => logo.logo)

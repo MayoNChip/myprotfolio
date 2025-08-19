@@ -14,18 +14,22 @@ interface ProjectDialogProps {
   onClose: () => void;
 }
 
-const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose }) => {
+const ProjectDialog: React.FC<ProjectDialogProps> = ({
+  project,
+  isOpen,
+  onClose,
+}) => {
   // Prevent background scrolling when dialog is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -45,14 +49,14 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
             onClick={onClose}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
           />
-          
+
           {/* Dialog */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
             transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-            className="fixed inset-6 md:inset-12 lg:inset-20 xl:inset-32 bg-light rounded-2xl shadow-2xl z-50 flex flex-col max-h-[calc(100vh-3rem)] md:max-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-10rem)] xl:max-h-[calc(100vh-16rem)]"
+            className="fixed inset-6 md:inset-12 lg:inset-20 xl:inset-20 xl:w-1/2 xl:mx-auto bg-light rounded-2xl shadow-2xl z-50 flex flex-col max-h-[calc(100vh-3rem)] md:max-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-10rem)] xl:max-h-[calc(100vh-8rem)]"
           >
             {/* Header */}
             <div className="relative h-40 md:h-48 lg:h-56 flex-shrink-0">
@@ -63,7 +67,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              
+
               {/* Close button */}
               <button
                 onClick={onClose}
@@ -71,7 +75,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
               >
                 <IoClose size={24} />
               </button>
-              
+
               {/* Title overlay */}
               <div className="absolute bottom-6 left-6 right-6">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
@@ -79,31 +83,37 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
                 </h1>
               </div>
             </div>
-            
+
             {/* Content */}
             <div className="p-6 flex-1 overflow-y-auto">
               <div className="max-w-4xl mx-auto">
                 {/* Description */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold text-dark mb-4">About this project</h2>
+                  <h2 className="text-xl font-semibold text-dark mb-4">
+                    About this project
+                  </h2>
                   <p className="text-gray-700 leading-relaxed text-lg">
                     {project.description}
                   </p>
                 </div>
-                
+
                 {/* Responsibilities */}
                 {project.responsibilities && (
                   <div className="mb-8">
-                    <h2 className="text-xl font-semibold text-dark mb-4">My Responsibilities</h2>
+                    <h2 className="text-xl font-semibold text-dark mb-4">
+                      My Responsibilities
+                    </h2>
                     <p className="text-gray-700 leading-relaxed text-lg">
                       {project.responsibilities}
                     </p>
                   </div>
                 )}
-                
+
                 {/* Technologies */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold text-dark mb-4">Technologies</h2>
+                  <h2 className="text-xl font-semibold text-dark mb-4">
+                    Technologies
+                  </h2>
                   <div className="flex flex-wrap gap-3">
                     {projectTags.map((tag, index) => (
                       <div
@@ -126,33 +136,44 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Hosting info */}
                 {project.hosting && (
                   <div className="mb-8">
-                    <h2 className="text-xl font-semibold text-dark mb-4">Hosting</h2>
+                    <h2 className="text-xl font-semibold text-dark mb-4">
+                      Hosting
+                    </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="p-4 bg-gray-50 rounded-lg">
                         <h3 className="font-medium text-dark mb-1">Frontend</h3>
-                        <p className="text-gray-600">{project.hosting.frontend}</p>
+                        <p className="text-gray-600">
+                          {project.hosting.frontend}
+                        </p>
                       </div>
                       {project.hosting.backend && (
                         <div className="p-4 bg-gray-50 rounded-lg">
-                          <h3 className="font-medium text-dark mb-1">Backend</h3>
-                          <p className="text-gray-600">{project.hosting.backend}</p>
+                          <h3 className="font-medium text-dark mb-1">
+                            Backend
+                          </h3>
+                          <p className="text-gray-600">
+                            {project.hosting.backend}
+                          </p>
                         </div>
                       )}
                     </div>
                   </div>
                 )}
-                
+
                 {/* Test user */}
                 {project.example_user && (
                   <div className="mb-8">
-                    <h2 className="text-xl font-semibold text-dark mb-4">Test Account</h2>
+                    <h2 className="text-xl font-semibold text-dark mb-4">
+                      Test Account
+                    </h2>
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-blue-800">
-                        <span className="font-medium">Email:</span> {project.example_user}
+                        <span className="font-medium">Email:</span>{" "}
+                        {project.example_user}
                       </p>
                       <p className="text-blue-600 text-sm mt-1">
                         Use any password (6+ characters) for testing
@@ -160,7 +181,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
                     </div>
                   </div>
                 )}
-                
+
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
                   {project.app_url && (
@@ -173,7 +194,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = ({ project, isOpen, onClose 
                       Visit Live Site
                     </Link>
                   )}
-                  
+
                   {project.repository_url && (
                     <Link
                       href={project.repository_url}

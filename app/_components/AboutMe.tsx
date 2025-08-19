@@ -5,9 +5,10 @@ import { useAnimate, useInView, usePresence } from "framer-motion";
 import { GlobalContext, InitialContext } from "../../context/GlobalContext";
 import AboutMeHero from "./AboutMeHero";
 import AboutMeContent from "./AboutMeContent";
+import { useSectionRefs } from "@/hooks/useSectionRefs";
 
 function AboutMe() {
-  const { refs } = useContext(GlobalContext) as InitialContext;
+  const { sections, activeSection } = useSectionRefs();
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
   const parentRef = useRef(null);
@@ -42,13 +43,10 @@ function AboutMe() {
     };
 
     enterAnimations();
-  }, [refs[2], isInView, animate]);
+  }, [sections.about.ref, isInView, animate]);
 
   return (
-    <div
-      ref={parentRef}
-      className="relative flex flex-col w-full h-full "
-    >
+    <div ref={parentRef} className="relative flex flex-col w-full h-full ">
       <AboutMeHero />
       <AboutMeContent />
     </div>
