@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 
 interface SectionWrapperProps {
   sectionId: string;
-  sectionRef: RefObject<HTMLDivElement>;
+  sectionRef: RefObject<HTMLDivElement | null>;
   children: ReactNode;
   className?: string;
 }

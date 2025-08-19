@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { RefObject, useRef, useEffect, useState, useMemo } from "react";
 
 interface SectionRef {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   isInView: boolean;
   id: string;
   label: string;
